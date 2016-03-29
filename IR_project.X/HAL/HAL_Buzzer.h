@@ -12,8 +12,10 @@
 extern "C" {
 #endif
 
-
-
+void HAL_Buzzer_GPIO_Init(void);
+void HAL_Buzzer_PWM_Init(unsigned short frequency_Khz, unsigned char Duty);
+void HAL_Buzzer_On(void);
+void HAL_Buzzer_Off(void);
 
 #ifdef	__cplusplus
 }

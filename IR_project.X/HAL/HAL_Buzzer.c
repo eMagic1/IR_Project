@@ -23,7 +23,7 @@ void HAL_Buzzer_GPIO_Init(void)
 /*Date:           28/03/2016                                                  */
 /*Descripton:                                                                 */
 /******************************************************************************/
-void HAL_Buzzer_PWM_Init(unsigned char frequency_Khz, unsigned char Duty)
+void HAL_Buzzer_PWM_Init(unsigned short frequency_Khz, unsigned char Duty)
 {
     unsigned char u8_Period;
     unsigned char u8_Prescaler = 1;
