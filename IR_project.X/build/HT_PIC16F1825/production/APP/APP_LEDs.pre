@@ -1,0 +1,72 @@
+
+# 1 "APP/APP_LEDs.c"
+
+# 15 "APP/../HAL/HAL_Leds.h"
+void GPIO_Leds_Init(void);
+void GPIO_Leds_Set(unsigned char pin_number);
+void GPIO_Leds_Clear(unsigned char pin_number);
+
+# 11 "APP/APP_LEDs.h"
+typedef enum
+{
+LED_1 = 3,
+LED_2 = 4,
+LED_3 = 5,
+LED_ID_MAX = 0xFF,
+}E_LED_ID;
+
+typedef enum
+{
+LED_OFF = 0,
+LED_ON = 1,
+LED_STATE_MAX = 0xff,
+}E_LED_STATE;
+
+# 7 "APP/APP_LEDs.c"
+E_LED_ID LED_Active_Blink = LED_ID_MAX;
+
+
+void LEDs_Change_State(E_LED_ID e_Leds_Id, E_LED_STATE e_Led_State)
+{
+if(e_Led_State == LED_ON)
+{
+GPIO_Leds_Set(e_Leds_Id);
+}
+else
+{
+GPIO_Leds_Clear(e_Leds_Id);
+}
+}
+void LEDs_Blink(E_LED_ID e_Leds_Id)
+{
+LED_Active_Blink = e_Leds_Id;
+
+}
+
+void LEDs_Blink_Handler(void)
+{
+static E_LED_STATE e_State = LED_OFF;
+if( LED_Active_Blink != LED_ID_MAX)
+{
+if(e_State == LED_OFF)
+{
+GPIO_Leds_Set(LED_Active_Blink);
+e_State = LED_ON;
+}
+else
+{
+GPIO_Leds_Clear(LED_Active_Blink);
+e_State = LED_OFF;
+}
+}
+
+}
+void LEDs_Stop_Blink(void)
+{
+if(LED_Active_Blink != LED_ID_MAX)
+{
+GPIO_Leds_Clear(LED_Active_Blink);
+
+}
+}
+

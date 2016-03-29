@@ -1,0 +1,164 @@
+[p LITE_MODE AUTOSTATIC PIC14 PIC14E ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F1825 ]
+[d frameptr 6 ]
+"7 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\APP/APP_LEDs.c
+[e E7 . `uc
+LED_1 3
+LED_2 4
+LED_3 5
+LED_ID_MAX 255
+]
+"11
+[e E13 . `uc
+LED_OFF 0
+LED_ON 1
+LED_STATE_MAX 255
+]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"86 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\pic\eeprom.c
+[v _eecpymem eecpymem `(v  1 e 1 0 ]
+"39
+[v _memcpyee memcpyee `(v  1 e 1 0 ]
+"28 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\HAL/HAL_Leds.c
+[v _GPIO_Leds_Set GPIO_Leds_Set `(v  1 e 1 0 ]
+"38
+[v _GPIO_Leds_Clear GPIO_Leds_Clear `(v  1 e 1 0 ]
+"23 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\interrupts.c
+[v _isr isr `II(v  1 e 1 0 ]
+"26 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\main.c
+[v _main main `(v  1 e 1 0 ]
+"18 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\system.c
+[v _ConfigureOscillator ConfigureOscillator `(v  1 e 1 0 ]
+"22 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\user.c
+[v _InitApp InitApp `(v  1 e 1 0 ]
+"7 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\APP/APP_LEDs.c
+[v _LED_Active_Blink LED_Active_Blink `E7  1 e 1 0 ]
+"884 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1825.h
+[v _PR2 PR2 `VEuc  1 e 1 @27 ]
+[s S135 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+`uc 1 T2CKPS1 1 0 :1:1 
+`uc 1 TMR2ON 1 0 :1:2 
+`uc 1 T2OUTPS0 1 0 :1:3 
+`uc 1 T2OUTPS1 1 0 :1:4 
+`uc 1 T2OUTPS2 1 0 :1:5 
+`uc 1 T2OUTPS3 1 0 :1:6 
+]
+"924
+[s S143 . 1 `uc 1 T2CKPS 1 0 :2:0 
+`uc 1 . 1 0 :1:2 
+`uc 1 T2OUTPS 1 0 :4:3 
+]
+[u S147 . 1 `S135 1 . 1 0 `S143 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES147  1 e 1 @28 ]
+[s S52 . 1 `uc 1 TRISA0 1 0 :1:0 
+`uc 1 TRISA1 1 0 :1:1 
+`uc 1 TRISA2 1 0 :1:2 
+`uc 1 TRISA3 1 0 :1:3 
+`uc 1 TRISA4 1 0 :1:4 
+`uc 1 TRISA5 1 0 :1:5 
+]
+"1092
+[u S59 . 1 `S52 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES59  1 e 1 @140 ]
+[s S23 . 1 `uc 1 TRISC0 1 0 :1:0 
+`uc 1 TRISC1 1 0 :1:1 
+`uc 1 TRISC2 1 0 :1:2 
+`uc 1 TRISC3 1 0 :1:3 
+`uc 1 TRISC4 1 0 :1:4 
+`uc 1 TRISC5 1 0 :1:5 
+]
+"1141
+[u S30 . 1 `S23 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES30  1 e 1 @142 ]
+"1942
+[v _LATC LATC `VEuc  1 e 1 @270 ]
+"2673
+[v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
+"4392
+[v _CCPR2L CCPR2L `VEuc  1 e 1 @664 ]
+"4430
+[v _CCP2CON CCP2CON `VEuc  1 e 1 @666 ]
+[s S73 . 1 `uc 1 CCP2M0 1 0 :1:0 
+`uc 1 CCP2M1 1 0 :1:1 
+`uc 1 CCP2M2 1 0 :1:2 
+`uc 1 CCP2M3 1 0 :1:3 
+`uc 1 DC2B0 1 0 :1:4 
+`uc 1 DC2B1 1 0 :1:5 
+`uc 1 P2M0 1 0 :1:6 
+`uc 1 P2M1 1 0 :1:7 
+]
+"4452
+[s S82 . 1 `uc 1 CCP2M 1 0 :4:0 
+`uc 1 DC2B 1 0 :2:4 
+`uc 1 P2M 1 0 :2:6 
+]
+[u S86 . 1 `S73 1 . 1 0 `S82 1 . 1 0 ]
+[v _CCP2CONbits CCP2CONbits `VES86  1 e 1 @666 ]
+[s S103 . 1 `uc 1 C1TSEL0 1 0 :1:0 
+`uc 1 C1TSEL1 1 0 :1:1 
+`uc 1 C2TSEL0 1 0 :1:2 
+`uc 1 C2TSEL1 1 0 :1:3 
+`uc 1 C3TSEL0 1 0 :1:4 
+`uc 1 C3TSEL1 1 0 :1:5 
+`uc 1 C4TSEL0 1 0 :1:6 
+`uc 1 C4TSEL1 1 0 :1:7 
+]
+"4727
+[s S112 . 1 `uc 1 C1TSEL 1 0 :2:0 
+`uc 1 C2TSEL 1 0 :2:2 
+`uc 1 C3TSEL 1 0 :2:4 
+`uc 1 C4TSEL 1 0 :2:6 
+]
+[u S117 . 1 `S103 1 . 1 0 `S112 1 . 1 0 ]
+[v _CCPTMRSbits CCPTMRSbits `VES117  1 e 1 @670 ]
+"6386
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"6422
+[v _INTE INTE `VEb  1 e 0 @92 ]
+"6424
+[v _INTEDG INTEDG `VEb  1 e 0 @1198 ]
+"6426
+[v _INTF INTF `VEb  1 e 0 @89 ]
+"6484
+[v _LATA5 LATA5 `VEb  1 e 0 @2149 ]
+"6648
+[v _RA2 RA2 `VEb  1 e 0 @98 ]
+"6906
+[v _TRISA2 TRISA2 `VEb  1 e 0 @1122 ]
+"14 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\HAL/HAL_IR.c
+[v _f_IR_Interrupt_Handler f_IR_Interrupt_Handler `*.1*.1(v  1 e 1 0 ]
+"26 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"40
+} 0
+"22 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\user.c
+[v _InitApp InitApp `(v  1 e 1 0 ]
+{
+"31
+} 0
+"18 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\system.c
+[v _ConfigureOscillator ConfigureOscillator `(v  1 e 1 0 ]
+{
+"25
+} 0
+"23 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\interrupts.c
+[v _isr isr `II(v  1 e 1 0 ]
+{
+"50
+} 0

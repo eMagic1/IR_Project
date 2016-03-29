@@ -1,0 +1,178 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"7 APP/APP_LEDs.c
+[c E7 3 4 5 255 .. ]
+[n E7 . LED_1 LED_2 LED_3 LED_ID_MAX  ]
+"11
+[c E13 0 1 255 .. ]
+[n E13 . LED_OFF LED_ON LED_STATE_MAX  ]
+"16 APP/../HAL/HAL_Leds.h
+[v _GPIO_Leds_Set `(v ~T0 @X0 0 ef1`uc ]
+"17
+[v _GPIO_Leds_Clear `(v ~T0 @X0 0 ef1`uc ]
+[; ;HAL_Leds.h: 15: void GPIO_Leds_Init(void);
+[; ;HAL_Leds.h: 16: void GPIO_Leds_Set(unsigned char pin_number);
+[; ;HAL_Leds.h: 17: void GPIO_Leds_Clear(unsigned char pin_number);
+[; ;APP_LEDs.h: 11: typedef enum
+[; ;APP_LEDs.h: 12: {
+[; ;APP_LEDs.h: 13: LED_1 = 3,
+[; ;APP_LEDs.h: 14: LED_2 = 4,
+[; ;APP_LEDs.h: 15: LED_3 = 5,
+[; ;APP_LEDs.h: 16: LED_ID_MAX = 0xFF,
+[; ;APP_LEDs.h: 17: }E_LED_ID;
+[; ;APP_LEDs.h: 19: typedef enum
+[; ;APP_LEDs.h: 20: {
+[; ;APP_LEDs.h: 21: LED_OFF = 0,
+[; ;APP_LEDs.h: 22: LED_ON = 1,
+[; ;APP_LEDs.h: 23: LED_STATE_MAX = 0xff,
+[; ;APP_LEDs.h: 24: }E_LED_STATE;
+"7 APP/APP_LEDs.c
+[v _LED_Active_Blink `E7 ~T0 @X0 1 e ]
+[i _LED_Active_Blink
+. `E7 3
+]
+[; ;APP_LEDs.c: 7: E_LED_ID LED_Active_Blink = LED_ID_MAX;
+"10
+[v _LEDs_Change_State `(v ~T0 @X0 1 ef2`E7`E13 ]
+"11
+{
+[; ;APP_LEDs.c: 10: void LEDs_Change_State(E_LED_ID e_Leds_Id, E_LED_STATE e_Led_State)
+[; ;APP_LEDs.c: 11: {
+[e :U _LEDs_Change_State ]
+"10
+[v _e_Leds_Id `E7 ~T0 @X0 1 r1 ]
+[v _e_Led_State `E13 ~T0 @X0 1 r2 ]
+"11
+[f ]
+[; ;APP_LEDs.c: 12: if(e_Led_State == LED_ON)
+"12
+[e $ ! == -> _e_Led_State `i -> . `E13 1 `i 2  ]
+[; ;APP_LEDs.c: 13: {
+"13
+{
+[; ;APP_LEDs.c: 14: GPIO_Leds_Set(e_Leds_Id);
+"14
+[e ( _GPIO_Leds_Set (1 -> _e_Leds_Id `uc ]
+"15
+}
+[; ;APP_LEDs.c: 15: }
+[e $U 3  ]
+"16
+[e :U 2 ]
+[; ;APP_LEDs.c: 16: else
+[; ;APP_LEDs.c: 17: {
+"17
+{
+[; ;APP_LEDs.c: 18: GPIO_Leds_Clear(e_Leds_Id);
+"18
+[e ( _GPIO_Leds_Clear (1 -> _e_Leds_Id `uc ]
+"19
+}
+[e :U 3 ]
+[; ;APP_LEDs.c: 19: }
+[; ;APP_LEDs.c: 20: }
+"20
+[e :UE 1 ]
+}
+"21
+[v _LEDs_Blink `(v ~T0 @X0 1 ef1`E7 ]
+"22
+{
+[; ;APP_LEDs.c: 21: void LEDs_Blink(E_LED_ID e_Leds_Id)
+[; ;APP_LEDs.c: 22: {
+[e :U _LEDs_Blink ]
+"21
+[v _e_Leds_Id `E7 ~T0 @X0 1 r1 ]
+"22
+[f ]
+[; ;APP_LEDs.c: 23: LED_Active_Blink = e_Leds_Id;
+"23
+[e = _LED_Active_Blink _e_Leds_Id ]
+[; ;APP_LEDs.c: 25: }
+"25
+[e :UE 4 ]
+}
+"27
+[v _LEDs_Blink_Handler `(v ~T0 @X0 1 ef ]
+"28
+{
+[; ;APP_LEDs.c: 27: void LEDs_Blink_Handler(void)
+[; ;APP_LEDs.c: 28: {
+[e :U _LEDs_Blink_Handler ]
+[f ]
+"29
+[v F26 `E13 ~T0 @X0 1 s e_State ]
+[i F26
+. `E13 0
+]
+[; ;APP_LEDs.c: 29: static E_LED_STATE e_State = LED_OFF;
+[; ;APP_LEDs.c: 30: if( LED_Active_Blink != LED_ID_MAX)
+"30
+[e $ ! != -> _LED_Active_Blink `i -> . `E7 3 `i 6  ]
+[; ;APP_LEDs.c: 31: {
+"31
+{
+[; ;APP_LEDs.c: 32: if(e_State == LED_OFF)
+"32
+[e $ ! == -> F26 `i -> . `E13 0 `i 7  ]
+[; ;APP_LEDs.c: 33: {
+"33
+{
+[; ;APP_LEDs.c: 34: GPIO_Leds_Set(LED_Active_Blink);
+"34
+[e ( _GPIO_Leds_Set (1 -> _LED_Active_Blink `uc ]
+[; ;APP_LEDs.c: 35: e_State = LED_ON;
+"35
+[e = F26 . `E13 1 ]
+"36
+}
+[; ;APP_LEDs.c: 36: }
+[e $U 8  ]
+"37
+[e :U 7 ]
+[; ;APP_LEDs.c: 37: else
+[; ;APP_LEDs.c: 38: {
+"38
+{
+[; ;APP_LEDs.c: 39: GPIO_Leds_Clear(LED_Active_Blink);
+"39
+[e ( _GPIO_Leds_Clear (1 -> _LED_Active_Blink `uc ]
+[; ;APP_LEDs.c: 40: e_State = LED_OFF;
+"40
+[e = F26 . `E13 0 ]
+"41
+}
+[e :U 8 ]
+"42
+}
+[e :U 6 ]
+[; ;APP_LEDs.c: 41: }
+[; ;APP_LEDs.c: 42: }
+[; ;APP_LEDs.c: 44: }
+"44
+[e :UE 5 ]
+}
+"45
+[v _LEDs_Stop_Blink `(v ~T0 @X0 1 ef ]
+"46
+{
+[; ;APP_LEDs.c: 45: void LEDs_Stop_Blink(void)
+[; ;APP_LEDs.c: 46: {
+[e :U _LEDs_Stop_Blink ]
+[f ]
+[; ;APP_LEDs.c: 47: if(LED_Active_Blink != LED_ID_MAX)
+"47
+[e $ ! != -> _LED_Active_Blink `i -> . `E7 3 `i 10  ]
+[; ;APP_LEDs.c: 48: {
+"48
+{
+[; ;APP_LEDs.c: 49: GPIO_Leds_Clear(LED_Active_Blink);
+"49
+[e ( _GPIO_Leds_Clear (1 -> _LED_Active_Blink `uc ]
+"51
+}
+[e :U 10 ]
+[; ;APP_LEDs.c: 51: }
+[; ;APP_LEDs.c: 52: }
+"52
+[e :UE 9 ]
+}
