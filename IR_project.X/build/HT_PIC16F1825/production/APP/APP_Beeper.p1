@@ -1,1 +1,372 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"12 APP/APP_Beeper.h
+[s S1 `us 1 `uc 1 `uc 1 ]
+[n S1 . u16_Beeper_Frequency u8_Beeper_Volume u8_Beeper_Number ]
+"19
+[s S2 `us 1 `us 1 ]
+[n S2 . time_on time_off ]
+"16 APP/../HAL/HAL_Buzzer.h
+[v _HAL_Buzzer_PWM_Init `(v ~T0 @X0 0 ef2`us`uc ]
+"45 APP/APP_Beeper.c
+[c E10 0 1 .. ]
+[n E10 . BEEPER_STATE_OFF BEEPER_STATE_ON  ]
+"18 APP/../HAL/HAL_Buzzer.h
+[v _HAL_Buzzer_Off `(v ~T0 @X0 0 ef ]
+"17
+[v _HAL_Buzzer_On `(v ~T0 @X0 0 ef ]
+[; ;APP_Beeper.h: 11: typedef struct
+[; ;APP_Beeper.h: 12: {
+[; ;APP_Beeper.h: 13: unsigned short u16_Beeper_Frequency;
+[; ;APP_Beeper.h: 14: unsigned char u8_Beeper_Volume;
+[; ;APP_Beeper.h: 15: unsigned char u8_Beeper_Number;
+[; ;APP_Beeper.h: 16: }struct_Beeper;
+[; ;APP_Beeper.h: 18: typedef struct
+[; ;APP_Beeper.h: 19: {
+[; ;APP_Beeper.h: 20: unsigned short time_on;
+[; ;APP_Beeper.h: 21: unsigned short time_off;
+[; ;APP_Beeper.h: 22: }struct_time_beeper;
+[; ;APP_Beeper.h: 24: typedef enum
+[; ;APP_Beeper.h: 25: {
+[; ;APP_Beeper.h: 26: BEEPER_STATE_OFF,
+[; ;APP_Beeper.h: 27: BEEPER_STATE_ON,
+[; ;APP_Beeper.h: 28: }Beeper_State;
+[; ;HAL_Buzzer.h: 15: void HAL_Buzzer_GPIO_Init(void);
+[; ;HAL_Buzzer.h: 16: void HAL_Buzzer_PWM_Init(unsigned short frequency_Khz, unsigned char Duty);
+[; ;HAL_Buzzer.h: 17: void HAL_Buzzer_On(void);
+[; ;HAL_Buzzer.h: 18: void HAL_Buzzer_Off(void);
+"7 APP/APP_Beeper.c
+[v _strt_Beeper_Value `S1 ~T0 @X0 1 e ]
+[; ;APP_Beeper.c: 7: struct_Beeper strt_Beeper_Value;
+"8
+[v _p_strt_Time_Beep `*S2 ~T0 @X0 1 e ]
+[; ;APP_Beeper.c: 8: struct_time_beeper * p_strt_Time_Beep;
+"9
+[v _u8_Number_Beep `uc ~T0 @X0 1 e ]
+[; ;APP_Beeper.c: 9: unsigned char u8_Number_Beep;
+"10
+[v _u8_Current_Beep `uc ~T0 @X0 1 e ]
+[; ;APP_Beeper.c: 10: unsigned char u8_Current_Beep;
+"11
+[v _u8_Beeper_State `uc ~T0 @X0 1 e ]
+[; ;APP_Beeper.c: 11: unsigned char u8_Beeper_State;
+"14
+[v _BEEP_PRESS_OK `CS2 ~T0 @X0 1 e ]
+[i _BEEP_PRESS_OK
+:U ..
+:U ..
+-> -> 200 `i `us
+-> -> 100 `i `us
+..
+..
+]
+[; ;APP_Beeper.c: 14: const struct_time_beeper BEEP_PRESS_OK = {200, 100};
+"16
+[v _BEEP_ON_SETTING `CS2 ~T0 @X0 -> 2 `i e ]
+[i _BEEP_ON_SETTING
+:U ..
+:U ..
+-> -> 200 `i `us
+-> -> 50 `i `us
+..
+:U ..
+-> -> 300 `i `us
+-> -> 100 `i `us
+..
+..
+]
+[; ;APP_Beeper.c: 16: const struct_time_beeper BEEP_ON_SETTING[2] = { {200,50} , {300,100} };
+"18
+[v _BEEP_SETTING_OK `CS2 ~T0 @X0 -> 2 `i e ]
+[i _BEEP_SETTING_OK
+:U ..
+:U ..
+-> -> 300 `i `us
+-> -> 100 `i `us
+..
+:U ..
+-> -> 200 `i `us
+-> -> 50 `i `us
+..
+..
+]
+[; ;APP_Beeper.c: 18: const struct_time_beeper BEEP_SETTING_OK[2] ={ {300,100}, {200,50} };
+"20
+[v _BEEP_SETTING_ERROR `CS2 ~T0 @X0 -> 3 `i e ]
+[i _BEEP_SETTING_ERROR
+:U ..
+:U ..
+-> -> 200 `i `us
+-> -> 100 `i `us
+..
+:U ..
+-> -> 200 `i `us
+-> -> 100 `i `us
+..
+:U ..
+-> -> 400 `i `us
+-> -> 100 `i `us
+..
+..
+]
+[; ;APP_Beeper.c: 20: const struct_time_beeper BEEP_SETTING_ERROR[3] = {{200,100}, {200, 100}, {400,100}};
+"22
+[v _BEEPER_Set_Volume_Frequency `(v ~T0 @X0 1 ef2`us`us ]
+"23
+{
+[; ;APP_Beeper.c: 22: void BEEPER_Set_Volume_Frequency(unsigned short frequency, unsigned short Volume)
+[; ;APP_Beeper.c: 23: {
+[e :U _BEEPER_Set_Volume_Frequency ]
+"22
+[v _frequency `us ~T0 @X0 1 r1 ]
+[v _Volume `us ~T0 @X0 1 r2 ]
+"23
+[f ]
+[; ;APP_Beeper.c: 24: strt_Beeper_Value.u16_Beeper_Frequency = frequency;
+"24
+[e = . _strt_Beeper_Value 0 _frequency ]
+[; ;APP_Beeper.c: 25: switch(Volume)
+"25
+[e $U 5  ]
+[; ;APP_Beeper.c: 26: {
+"26
+{
+[; ;APP_Beeper.c: 27: case 0:
+"27
+[e :U 6 ]
+[; ;APP_Beeper.c: 28: strt_Beeper_Value.u8_Beeper_Volume = 15;
+"28
+[e = . _strt_Beeper_Value 1 -> -> 15 `i `uc ]
+[; ;APP_Beeper.c: 29: break;
+"29
+[e $U 4  ]
+[; ;APP_Beeper.c: 30: case 1:
+"30
+[e :U 7 ]
+[; ;APP_Beeper.c: 31: strt_Beeper_Value.u8_Beeper_Volume = 30;
+"31
+[e = . _strt_Beeper_Value 1 -> -> 30 `i `uc ]
+[; ;APP_Beeper.c: 32: break;
+"32
+[e $U 4  ]
+[; ;APP_Beeper.c: 33: case 2:
+"33
+[e :U 8 ]
+[; ;APP_Beeper.c: 34: strt_Beeper_Value.u8_Beeper_Volume = 50;
+"34
+[e = . _strt_Beeper_Value 1 -> -> 50 `i `uc ]
+[; ;APP_Beeper.c: 35: break;
+"35
+[e $U 4  ]
+[; ;APP_Beeper.c: 36: default:
+"36
+[e :U 9 ]
+[; ;APP_Beeper.c: 37: strt_Beeper_Value.u8_Beeper_Volume = 50;
+"37
+[e = . _strt_Beeper_Value 1 -> -> 50 `i `uc ]
+[; ;APP_Beeper.c: 38: break;
+"38
+[e $U 4  ]
+"39
+}
+[; ;APP_Beeper.c: 39: }
+[e $U 4  ]
+"25
+[e :U 5 ]
+[e [\ _Volume , $ -> -> 0 `i `us 6
+ , $ -> -> 1 `i `us 7
+ , $ -> -> 2 `i `us 8
+ 9 ]
+"39
+[e :U 4 ]
+[; ;APP_Beeper.c: 40: HAL_Buzzer_PWM_Init(strt_Beeper_Value.u16_Beeper_Frequency, strt_Beeper_Value.u8_Beeper_Volume);
+"40
+[e ( _HAL_Buzzer_PWM_Init (2 , . _strt_Beeper_Value 0 . _strt_Beeper_Value 1 ]
+[; ;APP_Beeper.c: 41: }
+"41
+[e :UE 3 ]
+}
+"43
+[v _BEEPER_Timer_Handler `(v ~T0 @X0 1 ef ]
+"44
+{
+[; ;APP_Beeper.c: 43: void BEEPER_Timer_Handler(void)
+[; ;APP_Beeper.c: 44: {
+[e :U _BEEPER_Timer_Handler ]
+[f ]
+[; ;APP_Beeper.c: 45: if(u8_Beeper_State == BEEPER_STATE_ON)
+"45
+[e $ ! == -> _u8_Beeper_State `i -> . `E10 1 `i 11  ]
+[; ;APP_Beeper.c: 46: {
+"46
+{
+[; ;APP_Beeper.c: 47: if(u8_Current_Beep < u8_Number_Beep)
+"47
+[e $ ! < -> _u8_Current_Beep `i -> _u8_Number_Beep `i 12  ]
+[; ;APP_Beeper.c: 48: {
+"48
+{
+[; ;APP_Beeper.c: 50: u8_Beeper_State == BEEPER_STATE_OFF;
+"50
+[e == -> _u8_Beeper_State `i -> . `E10 0 `i ]
+"51
+}
+[; ;APP_Beeper.c: 51: }
+[e $U 13  ]
+"52
+[e :U 12 ]
+[; ;APP_Beeper.c: 52: else
+[; ;APP_Beeper.c: 53: {
+"53
+{
+"55
+}
+[e :U 13 ]
+[; ;APP_Beeper.c: 55: }
+[; ;APP_Beeper.c: 56: HAL_Buzzer_Off();
+"56
+[e ( _HAL_Buzzer_Off ..  ]
+"57
+}
+[; ;APP_Beeper.c: 57: }
+[e $U 14  ]
+"58
+[e :U 11 ]
+[; ;APP_Beeper.c: 58: else
+[; ;APP_Beeper.c: 59: {
+"59
+{
+[; ;APP_Beeper.c: 60: if(u8_Current_Beep < u8_Number_Beep)
+"60
+[e $ ! < -> _u8_Current_Beep `i -> _u8_Number_Beep `i 15  ]
+[; ;APP_Beeper.c: 61: {
+"61
+{
+[; ;APP_Beeper.c: 62: u8_Current_Beep++;
+"62
+[e ++ _u8_Current_Beep -> -> 1 `i `uc ]
+[; ;APP_Beeper.c: 64: u8_Beeper_State == BEEPER_STATE_ON;
+"64
+[e == -> _u8_Beeper_State `i -> . `E10 1 `i ]
+[; ;APP_Beeper.c: 65: HAL_Buzzer_On();
+"65
+[e ( _HAL_Buzzer_On ..  ]
+"66
+}
+[e :U 15 ]
+"67
+}
+[e :U 14 ]
+[; ;APP_Beeper.c: 66: }
+[; ;APP_Beeper.c: 67: }
+[; ;APP_Beeper.c: 68: }
+"68
+[e :UE 10 ]
+}
+"70
+[v _BEEPER_Direct_Beep `(v ~T0 @X0 1 ef ]
+"71
+{
+[; ;APP_Beeper.c: 70: void BEEPER_Direct_Beep(void)
+[; ;APP_Beeper.c: 71: {
+[e :U _BEEPER_Direct_Beep ]
+[f ]
+[; ;APP_Beeper.c: 72: u8_Number_Beep = 1;
+"72
+[e = _u8_Number_Beep -> -> 1 `i `uc ]
+[; ;APP_Beeper.c: 73: u8_Beeper_State = BEEPER_STATE_ON;
+"73
+[e = _u8_Beeper_State -> . `E10 1 `uc ]
+[; ;APP_Beeper.c: 74: p_strt_Time_Beep = &BEEP_PRESS_OK;
+"74
+[e = _p_strt_Time_Beep -> &U _BEEP_PRESS_OK `*S2 ]
+[; ;APP_Beeper.c: 76: HAL_Buzzer_On();
+"76
+[e ( _HAL_Buzzer_On ..  ]
+[; ;APP_Beeper.c: 77: u8_Current_Beep = 0;
+"77
+[e = _u8_Current_Beep -> -> 0 `i `uc ]
+[; ;APP_Beeper.c: 78: }
+"78
+[e :UE 16 ]
+}
+"80
+[v _BEEPER_On_Setting `(v ~T0 @X0 1 ef ]
+"81
+{
+[; ;APP_Beeper.c: 80: void BEEPER_On_Setting(void)
+[; ;APP_Beeper.c: 81: {
+[e :U _BEEPER_On_Setting ]
+[f ]
+[; ;APP_Beeper.c: 82: u8_Number_Beep = 2;
+"82
+[e = _u8_Number_Beep -> -> 2 `i `uc ]
+[; ;APP_Beeper.c: 83: u8_Beeper_State = BEEPER_STATE_ON;
+"83
+[e = _u8_Beeper_State -> . `E10 1 `uc ]
+[; ;APP_Beeper.c: 84: p_strt_Time_Beep = &BEEP_ON_SETTING;
+"84
+[e = _p_strt_Time_Beep -> &U _BEEP_ON_SETTING `*S2 ]
+[; ;APP_Beeper.c: 86: HAL_Buzzer_On();
+"86
+[e ( _HAL_Buzzer_On ..  ]
+[; ;APP_Beeper.c: 87: u8_Current_Beep = 0;
+"87
+[e = _u8_Current_Beep -> -> 0 `i `uc ]
+[; ;APP_Beeper.c: 88: }
+"88
+[e :UE 17 ]
+}
+"90
+[v _BEEPER_Setting_OK `(v ~T0 @X0 1 ef ]
+"91
+{
+[; ;APP_Beeper.c: 90: void BEEPER_Setting_OK(void)
+[; ;APP_Beeper.c: 91: {
+[e :U _BEEPER_Setting_OK ]
+[f ]
+[; ;APP_Beeper.c: 92: u8_Number_Beep = 2;
+"92
+[e = _u8_Number_Beep -> -> 2 `i `uc ]
+[; ;APP_Beeper.c: 93: u8_Beeper_State = BEEPER_STATE_ON;
+"93
+[e = _u8_Beeper_State -> . `E10 1 `uc ]
+[; ;APP_Beeper.c: 94: p_strt_Time_Beep = &BEEP_SETTING_OK;
+"94
+[e = _p_strt_Time_Beep -> &U _BEEP_SETTING_OK `*S2 ]
+[; ;APP_Beeper.c: 96: HAL_Buzzer_On();
+"96
+[e ( _HAL_Buzzer_On ..  ]
+[; ;APP_Beeper.c: 97: u8_Current_Beep = 0;
+"97
+[e = _u8_Current_Beep -> -> 0 `i `uc ]
+[; ;APP_Beeper.c: 98: }
+"98
+[e :UE 18 ]
+}
+"100
+[v _BEEPER_Setting_Error `(v ~T0 @X0 1 ef ]
+"101
+{
+[; ;APP_Beeper.c: 100: void BEEPER_Setting_Error(void)
+[; ;APP_Beeper.c: 101: {
+[e :U _BEEPER_Setting_Error ]
+[f ]
+[; ;APP_Beeper.c: 102: u8_Number_Beep = 3;
+"102
+[e = _u8_Number_Beep -> -> 3 `i `uc ]
+[; ;APP_Beeper.c: 103: u8_Beeper_State = BEEPER_STATE_ON;
+"103
+[e = _u8_Beeper_State -> . `E10 1 `uc ]
+[; ;APP_Beeper.c: 104: p_strt_Time_Beep = &BEEP_SETTING_ERROR;
+"104
+[e = _p_strt_Time_Beep -> &U _BEEP_SETTING_ERROR `*S2 ]
+[; ;APP_Beeper.c: 106: HAL_Buzzer_On();
+"106
+[e ( _HAL_Buzzer_On ..  ]
+[; ;APP_Beeper.c: 107: u8_Current_Beep = 0;
+"107
+[e = _u8_Current_Beep -> -> 0 `i `uc ]
+[; ;APP_Beeper.c: 108: }
+"108
+[e :UE 19 ]
+}

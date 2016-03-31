@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=interrupts.c configuration_bits.c system.c user.c HAL/HAL_Leds.c HAL/HAL_Buzzer.c main.c HAL/HAL_IR.c APP/APP_LEDs.c APP/APP_Beeper.c
+SOURCEFILES_QUOTED_IF_SPACED=APP/APP_LEDs.c APP/APP_Beeper.c interrupts.c configuration_bits.c system.c user.c HAL/HAL_Leds.c HAL/HAL_Buzzer.c HAL/HAL_IR.c main.c HAL/HAL_Eeproom.c HAL/HAL_Buttons.c HAL/HAL_OPTO.c APP/APP_Button.c APP/APP_Eeprom.c APP/APP_IR.c APP/APP_Opto.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1 ${OBJECTDIR}/HAL/HAL_Leds.p1 ${OBJECTDIR}/HAL/HAL_Buzzer.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/HAL/HAL_IR.p1 ${OBJECTDIR}/APP/APP_LEDs.p1 ${OBJECTDIR}/APP/APP_Beeper.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/configuration_bits.p1.d ${OBJECTDIR}/system.p1.d ${OBJECTDIR}/user.p1.d ${OBJECTDIR}/HAL/HAL_Leds.p1.d ${OBJECTDIR}/HAL/HAL_Buzzer.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/HAL/HAL_IR.p1.d ${OBJECTDIR}/APP/APP_LEDs.p1.d ${OBJECTDIR}/APP/APP_Beeper.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/APP/APP_LEDs.p1 ${OBJECTDIR}/APP/APP_Beeper.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1 ${OBJECTDIR}/HAL/HAL_Leds.p1 ${OBJECTDIR}/HAL/HAL_Buzzer.p1 ${OBJECTDIR}/HAL/HAL_IR.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/HAL/HAL_Eeproom.p1 ${OBJECTDIR}/HAL/HAL_Buttons.p1 ${OBJECTDIR}/HAL/HAL_OPTO.p1 ${OBJECTDIR}/APP/APP_Button.p1 ${OBJECTDIR}/APP/APP_Eeprom.p1 ${OBJECTDIR}/APP/APP_IR.p1 ${OBJECTDIR}/APP/APP_Opto.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/APP/APP_LEDs.p1.d ${OBJECTDIR}/APP/APP_Beeper.p1.d ${OBJECTDIR}/interrupts.p1.d ${OBJECTDIR}/configuration_bits.p1.d ${OBJECTDIR}/system.p1.d ${OBJECTDIR}/user.p1.d ${OBJECTDIR}/HAL/HAL_Leds.p1.d ${OBJECTDIR}/HAL/HAL_Buzzer.p1.d ${OBJECTDIR}/HAL/HAL_IR.p1.d ${OBJECTDIR}/main.p1.d ${OBJECTDIR}/HAL/HAL_Eeproom.p1.d ${OBJECTDIR}/HAL/HAL_Buttons.p1.d ${OBJECTDIR}/HAL/HAL_OPTO.p1.d ${OBJECTDIR}/APP/APP_Button.p1.d ${OBJECTDIR}/APP/APP_Eeprom.p1.d ${OBJECTDIR}/APP/APP_IR.p1.d ${OBJECTDIR}/APP/APP_Opto.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1 ${OBJECTDIR}/HAL/HAL_Leds.p1 ${OBJECTDIR}/HAL/HAL_Buzzer.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/HAL/HAL_IR.p1 ${OBJECTDIR}/APP/APP_LEDs.p1 ${OBJECTDIR}/APP/APP_Beeper.p1
+OBJECTFILES=${OBJECTDIR}/APP/APP_LEDs.p1 ${OBJECTDIR}/APP/APP_Beeper.p1 ${OBJECTDIR}/interrupts.p1 ${OBJECTDIR}/configuration_bits.p1 ${OBJECTDIR}/system.p1 ${OBJECTDIR}/user.p1 ${OBJECTDIR}/HAL/HAL_Leds.p1 ${OBJECTDIR}/HAL/HAL_Buzzer.p1 ${OBJECTDIR}/HAL/HAL_IR.p1 ${OBJECTDIR}/main.p1 ${OBJECTDIR}/HAL/HAL_Eeproom.p1 ${OBJECTDIR}/HAL/HAL_Buttons.p1 ${OBJECTDIR}/HAL/HAL_OPTO.p1 ${OBJECTDIR}/APP/APP_Button.p1 ${OBJECTDIR}/APP/APP_Eeprom.p1 ${OBJECTDIR}/APP/APP_IR.p1 ${OBJECTDIR}/APP/APP_Opto.p1
 
 # Source Files
-SOURCEFILES=interrupts.c configuration_bits.c system.c user.c HAL/HAL_Leds.c HAL/HAL_Buzzer.c main.c HAL/HAL_IR.c APP/APP_LEDs.c APP/APP_Beeper.c
+SOURCEFILES=APP/APP_LEDs.c APP/APP_Beeper.c interrupts.c configuration_bits.c system.c user.c HAL/HAL_Leds.c HAL/HAL_Buzzer.c HAL/HAL_IR.c main.c HAL/HAL_Eeproom.c HAL/HAL_Buttons.c HAL/HAL_OPTO.c APP/APP_Button.c APP/APP_Eeprom.c APP/APP_IR.c APP/APP_Opto.c
 
 
 CFLAGS=
@@ -81,6 +81,22 @@ MP_PROCESSOR_OPTION=16F1825
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+${OBJECTDIR}/APP/APP_LEDs.p1: APP/APP_LEDs.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/APP" 
+	@${RM} ${OBJECTDIR}/APP/APP_LEDs.p1.d 
+	@${RM} ${OBJECTDIR}/APP/APP_LEDs.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_LEDs.p1  APP/APP_LEDs.c 
+	@-${MV} ${OBJECTDIR}/APP/APP_LEDs.d ${OBJECTDIR}/APP/APP_LEDs.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/APP/APP_LEDs.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/APP/APP_Beeper.p1: APP/APP_Beeper.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/APP" 
+	@${RM} ${OBJECTDIR}/APP/APP_Beeper.p1.d 
+	@${RM} ${OBJECTDIR}/APP/APP_Beeper.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_Beeper.p1  APP/APP_Beeper.c 
+	@-${MV} ${OBJECTDIR}/APP/APP_Beeper.d ${OBJECTDIR}/APP/APP_Beeper.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/APP/APP_Beeper.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 ${OBJECTDIR}/interrupts.p1: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/interrupts.p1.d 
@@ -129,14 +145,6 @@ ${OBJECTDIR}/HAL/HAL_Buzzer.p1: HAL/HAL_Buzzer.c  nbproject/Makefile-${CND_CONF}
 	@-${MV} ${OBJECTDIR}/HAL/HAL_Buzzer.d ${OBJECTDIR}/HAL/HAL_Buzzer.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/HAL/HAL_Buzzer.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/main.p1.d 
-	@${RM} ${OBJECTDIR}/main.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/main.p1  main.c 
-	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/HAL/HAL_IR.p1: HAL/HAL_IR.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/HAL" 
 	@${RM} ${OBJECTDIR}/HAL/HAL_IR.p1.d 
@@ -145,11 +153,76 @@ ${OBJECTDIR}/HAL/HAL_IR.p1: HAL/HAL_IR.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/HAL/HAL_IR.d ${OBJECTDIR}/HAL/HAL_IR.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/HAL/HAL_IR.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main.p1.d 
+	@${RM} ${OBJECTDIR}/main.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/main.p1  main.c 
+	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/HAL/HAL_Eeproom.p1: HAL/HAL_Eeproom.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/HAL" 
+	@${RM} ${OBJECTDIR}/HAL/HAL_Eeproom.p1.d 
+	@${RM} ${OBJECTDIR}/HAL/HAL_Eeproom.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/HAL/HAL_Eeproom.p1  HAL/HAL_Eeproom.c 
+	@-${MV} ${OBJECTDIR}/HAL/HAL_Eeproom.d ${OBJECTDIR}/HAL/HAL_Eeproom.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/HAL/HAL_Eeproom.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/HAL/HAL_Buttons.p1: HAL/HAL_Buttons.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/HAL" 
+	@${RM} ${OBJECTDIR}/HAL/HAL_Buttons.p1.d 
+	@${RM} ${OBJECTDIR}/HAL/HAL_Buttons.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/HAL/HAL_Buttons.p1  HAL/HAL_Buttons.c 
+	@-${MV} ${OBJECTDIR}/HAL/HAL_Buttons.d ${OBJECTDIR}/HAL/HAL_Buttons.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/HAL/HAL_Buttons.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/HAL/HAL_OPTO.p1: HAL/HAL_OPTO.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/HAL" 
+	@${RM} ${OBJECTDIR}/HAL/HAL_OPTO.p1.d 
+	@${RM} ${OBJECTDIR}/HAL/HAL_OPTO.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/HAL/HAL_OPTO.p1  HAL/HAL_OPTO.c 
+	@-${MV} ${OBJECTDIR}/HAL/HAL_OPTO.d ${OBJECTDIR}/HAL/HAL_OPTO.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/HAL/HAL_OPTO.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/APP/APP_Button.p1: APP/APP_Button.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/APP" 
+	@${RM} ${OBJECTDIR}/APP/APP_Button.p1.d 
+	@${RM} ${OBJECTDIR}/APP/APP_Button.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_Button.p1  APP/APP_Button.c 
+	@-${MV} ${OBJECTDIR}/APP/APP_Button.d ${OBJECTDIR}/APP/APP_Button.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/APP/APP_Button.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/APP/APP_Eeprom.p1: APP/APP_Eeprom.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/APP" 
+	@${RM} ${OBJECTDIR}/APP/APP_Eeprom.p1.d 
+	@${RM} ${OBJECTDIR}/APP/APP_Eeprom.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_Eeprom.p1  APP/APP_Eeprom.c 
+	@-${MV} ${OBJECTDIR}/APP/APP_Eeprom.d ${OBJECTDIR}/APP/APP_Eeprom.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/APP/APP_Eeprom.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/APP/APP_IR.p1: APP/APP_IR.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/APP" 
+	@${RM} ${OBJECTDIR}/APP/APP_IR.p1.d 
+	@${RM} ${OBJECTDIR}/APP/APP_IR.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_IR.p1  APP/APP_IR.c 
+	@-${MV} ${OBJECTDIR}/APP/APP_IR.d ${OBJECTDIR}/APP/APP_IR.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/APP/APP_IR.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/APP/APP_Opto.p1: APP/APP_Opto.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/APP" 
+	@${RM} ${OBJECTDIR}/APP/APP_Opto.p1.d 
+	@${RM} ${OBJECTDIR}/APP/APP_Opto.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_Opto.p1  APP/APP_Opto.c 
+	@-${MV} ${OBJECTDIR}/APP/APP_Opto.d ${OBJECTDIR}/APP/APP_Opto.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/APP/APP_Opto.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+else
 ${OBJECTDIR}/APP/APP_LEDs.p1: APP/APP_LEDs.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/APP" 
 	@${RM} ${OBJECTDIR}/APP/APP_LEDs.p1.d 
 	@${RM} ${OBJECTDIR}/APP/APP_LEDs.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_LEDs.p1  APP/APP_LEDs.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_LEDs.p1  APP/APP_LEDs.c 
 	@-${MV} ${OBJECTDIR}/APP/APP_LEDs.d ${OBJECTDIR}/APP/APP_LEDs.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/APP/APP_LEDs.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -157,11 +230,10 @@ ${OBJECTDIR}/APP/APP_Beeper.p1: APP/APP_Beeper.c  nbproject/Makefile-${CND_CONF}
 	@${MKDIR} "${OBJECTDIR}/APP" 
 	@${RM} ${OBJECTDIR}/APP/APP_Beeper.p1.d 
 	@${RM} ${OBJECTDIR}/APP/APP_Beeper.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=none  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_Beeper.p1  APP/APP_Beeper.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_Beeper.p1  APP/APP_Beeper.c 
 	@-${MV} ${OBJECTDIR}/APP/APP_Beeper.d ${OBJECTDIR}/APP/APP_Beeper.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/APP/APP_Beeper.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-else
 ${OBJECTDIR}/interrupts.p1: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/interrupts.p1.d 
@@ -210,14 +282,6 @@ ${OBJECTDIR}/HAL/HAL_Buzzer.p1: HAL/HAL_Buzzer.c  nbproject/Makefile-${CND_CONF}
 	@-${MV} ${OBJECTDIR}/HAL/HAL_Buzzer.d ${OBJECTDIR}/HAL/HAL_Buzzer.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/HAL/HAL_Buzzer.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/main.p1.d 
-	@${RM} ${OBJECTDIR}/main.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/main.p1  main.c 
-	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
-	
 ${OBJECTDIR}/HAL/HAL_IR.p1: HAL/HAL_IR.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/HAL" 
 	@${RM} ${OBJECTDIR}/HAL/HAL_IR.p1.d 
@@ -226,21 +290,69 @@ ${OBJECTDIR}/HAL/HAL_IR.p1: HAL/HAL_IR.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/HAL/HAL_IR.d ${OBJECTDIR}/HAL/HAL_IR.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/HAL/HAL_IR.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/APP/APP_LEDs.p1: APP/APP_LEDs.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/APP" 
-	@${RM} ${OBJECTDIR}/APP/APP_LEDs.p1.d 
-	@${RM} ${OBJECTDIR}/APP/APP_LEDs.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_LEDs.p1  APP/APP_LEDs.c 
-	@-${MV} ${OBJECTDIR}/APP/APP_LEDs.d ${OBJECTDIR}/APP/APP_LEDs.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/APP/APP_LEDs.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main.p1.d 
+	@${RM} ${OBJECTDIR}/main.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/main.p1  main.c 
+	@-${MV} ${OBJECTDIR}/main.d ${OBJECTDIR}/main.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/main.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
-${OBJECTDIR}/APP/APP_Beeper.p1: APP/APP_Beeper.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/HAL/HAL_Eeproom.p1: HAL/HAL_Eeproom.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/HAL" 
+	@${RM} ${OBJECTDIR}/HAL/HAL_Eeproom.p1.d 
+	@${RM} ${OBJECTDIR}/HAL/HAL_Eeproom.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/HAL/HAL_Eeproom.p1  HAL/HAL_Eeproom.c 
+	@-${MV} ${OBJECTDIR}/HAL/HAL_Eeproom.d ${OBJECTDIR}/HAL/HAL_Eeproom.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/HAL/HAL_Eeproom.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/HAL/HAL_Buttons.p1: HAL/HAL_Buttons.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/HAL" 
+	@${RM} ${OBJECTDIR}/HAL/HAL_Buttons.p1.d 
+	@${RM} ${OBJECTDIR}/HAL/HAL_Buttons.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/HAL/HAL_Buttons.p1  HAL/HAL_Buttons.c 
+	@-${MV} ${OBJECTDIR}/HAL/HAL_Buttons.d ${OBJECTDIR}/HAL/HAL_Buttons.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/HAL/HAL_Buttons.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/HAL/HAL_OPTO.p1: HAL/HAL_OPTO.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/HAL" 
+	@${RM} ${OBJECTDIR}/HAL/HAL_OPTO.p1.d 
+	@${RM} ${OBJECTDIR}/HAL/HAL_OPTO.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/HAL/HAL_OPTO.p1  HAL/HAL_OPTO.c 
+	@-${MV} ${OBJECTDIR}/HAL/HAL_OPTO.d ${OBJECTDIR}/HAL/HAL_OPTO.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/HAL/HAL_OPTO.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/APP/APP_Button.p1: APP/APP_Button.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/APP" 
-	@${RM} ${OBJECTDIR}/APP/APP_Beeper.p1.d 
-	@${RM} ${OBJECTDIR}/APP/APP_Beeper.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_Beeper.p1  APP/APP_Beeper.c 
-	@-${MV} ${OBJECTDIR}/APP/APP_Beeper.d ${OBJECTDIR}/APP/APP_Beeper.p1.d 
-	@${FIXDEPS} ${OBJECTDIR}/APP/APP_Beeper.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	@${RM} ${OBJECTDIR}/APP/APP_Button.p1.d 
+	@${RM} ${OBJECTDIR}/APP/APP_Button.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_Button.p1  APP/APP_Button.c 
+	@-${MV} ${OBJECTDIR}/APP/APP_Button.d ${OBJECTDIR}/APP/APP_Button.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/APP/APP_Button.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/APP/APP_Eeprom.p1: APP/APP_Eeprom.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/APP" 
+	@${RM} ${OBJECTDIR}/APP/APP_Eeprom.p1.d 
+	@${RM} ${OBJECTDIR}/APP/APP_Eeprom.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_Eeprom.p1  APP/APP_Eeprom.c 
+	@-${MV} ${OBJECTDIR}/APP/APP_Eeprom.d ${OBJECTDIR}/APP/APP_Eeprom.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/APP/APP_Eeprom.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/APP/APP_IR.p1: APP/APP_IR.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/APP" 
+	@${RM} ${OBJECTDIR}/APP/APP_IR.p1.d 
+	@${RM} ${OBJECTDIR}/APP/APP_IR.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_IR.p1  APP/APP_IR.c 
+	@-${MV} ${OBJECTDIR}/APP/APP_IR.d ${OBJECTDIR}/APP/APP_IR.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/APP/APP_IR.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/APP/APP_Opto.p1: APP/APP_Opto.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/APP" 
+	@${RM} ${OBJECTDIR}/APP/APP_Opto.p1.d 
+	@${RM} ${OBJECTDIR}/APP/APP_Opto.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=-3 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-osccal,-resetbits,-download,-stackcall,+clib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/APP/APP_Opto.p1  APP/APP_Opto.c 
+	@-${MV} ${OBJECTDIR}/APP/APP_Opto.d ${OBJECTDIR}/APP/APP_Opto.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/APP/APP_Opto.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

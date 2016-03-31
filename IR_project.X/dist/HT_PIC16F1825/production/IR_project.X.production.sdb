@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F1825 ]
 [d frameptr 6 ]
-"7 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\APP/APP_LEDs.c
+"7 E:\GITHUB\IR_Project\IR_project.X\APP/APP_LEDs.c
 [e E7 . `uc
 LED_1 3
 LED_2 4
@@ -16,41 +16,99 @@ LED_OFF 0
 LED_ON 1
 LED_STATE_MAX 255
 ]
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\aldiv.c
+"45 E:\GITHUB\IR_Project\IR_project.X\APP/APP_Beeper.c
+[e E10 . `uc
+BEEPER_STATE_OFF 0
+BEEPER_STATE_ON 1
+]
+"8 E:\GITHUB\IR_Project\IR_project.X\APP/APP_Eeprom.c
+[e E7 . `uc
+LOAD_1 0
+LOAD_2 1
+LOAD_3 2
+]
+"8 E:\GITHUB\IR_Project\IR_project.X\APP/APP_Opto.c
+[e E7 . `uc
+LOAD_ID_1 0
+LOAD_ID_2 1
+LOAD_ID_3 2
+]
+[e E12 . `uc
+LOAD_OFF 0
+LOAD_ON 1
+LOAD_STATE_MAX 255
+]
+"6 C:\Program Files\Microchip\xc8\v1.37\sources\common\aldiv.c
 [v ___aldiv __aldiv `(l  1 e 4 0 ]
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
+"6 C:\Program Files\Microchip\xc8\v1.37\sources\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
+"6 C:\Program Files\Microchip\xc8\v1.37\sources\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
-"62 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\float.c
+"62 C:\Program Files\Microchip\xc8\v1.37\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
-"86 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\ftadd.c
+"86 C:\Program Files\Microchip\xc8\v1.37\sources\common\ftadd.c
 [v ___ftadd __ftadd `(f  1 e 3 0 ]
-"15 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
+"15 C:\Program Files\Microchip\xc8\v1.37\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
-"15 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul32.c
+"15 C:\Program Files\Microchip\xc8\v1.37\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"6 C:\Program Files (x86)\Microchip\xc8\v1.37\sources\pic\eeprom.c
+"6 C:\Program Files\Microchip\xc8\v1.37\sources\pic\eeprom.c
 [v _eecpymem eecpymem `(v  1 e 1 0 ]
 "39
 [v _memcpyee memcpyee `(v  1 e 1 0 ]
-"28 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\HAL/HAL_Leds.c
+"6 C:\Program Files\Microchip\xc8\v1.37\sources\pic\eeread.c
+[v _eeprom_read eeprom_read `(uc  1 e 1 0 ]
+"6 C:\Program Files\Microchip\xc8\v1.37\sources\pic\eewrite.c
+[v _eeprom_write eeprom_write `(v  1 e 1 0 ]
+"26 E:\GITHUB\IR_Project\IR_project.X\HAL/HAL_Buzzer.c
+[v _HAL_Buzzer_PWM_Init HAL_Buzzer_PWM_Init `(v  1 e 1 0 ]
+"61
+[v _HAL_Buzzer_On HAL_Buzzer_On `(v  1 e 1 0 ]
+"71
+[v _HAL_Buzzer_Off HAL_Buzzer_Off `(v  1 e 1 0 ]
+"6 E:\GITHUB\IR_Project\IR_project.X\HAL/HAL_Eeproom.c
+[v _HAL_Eeprom_Write HAL_Eeprom_Write `(v  1 e 1 0 ]
+"11
+[v _HAL_Eeprom_Read HAL_Eeprom_Read `(v  1 e 1 0 ]
+"28 E:\GITHUB\IR_Project\IR_project.X\HAL/HAL_Leds.c
 [v _GPIO_Leds_Set GPIO_Leds_Set `(v  1 e 1 0 ]
 "38
 [v _GPIO_Leds_Clear GPIO_Leds_Clear `(v  1 e 1 0 ]
-"23 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\interrupts.c
+"28 E:\GITHUB\IR_Project\IR_project.X\HAL/HAL_OPTO.c
+[v _GPIO_OPTO_Set GPIO_OPTO_Set `(v  1 e 1 0 ]
+"23 E:\GITHUB\IR_Project\IR_project.X\interrupts.c
 [v _isr isr `II(v  1 e 1 0 ]
-"26 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\main.c
+"26 E:\GITHUB\IR_Project\IR_project.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"18 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\system.c
+"18 E:\GITHUB\IR_Project\IR_project.X\system.c
 [v _ConfigureOscillator ConfigureOscillator `(v  1 e 1 0 ]
-"22 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\user.c
+"22 E:\GITHUB\IR_Project\IR_project.X\user.c
 [v _InitApp InitApp `(v  1 e 1 0 ]
-"7 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\APP/APP_LEDs.c
+[s S47 . 4 `us 1 u16_Beeper_Frequency 2 0 `uc 1 u8_Beeper_Volume 1 2 `uc 1 u8_Beeper_Number 1 3 ]
+"7 E:\GITHUB\IR_Project\IR_project.X\APP/APP_Beeper.c
+[v _strt_Beeper_Value strt_Beeper_Value `S47  1 e 4 0 ]
+[s S51 . 4 `us 1 time_on 2 0 `us 1 time_off 2 2 ]
+"8
+[v _p_strt_Time_Beep p_strt_Time_Beep `*.25S51  1 e 2 0 ]
+"9
+[v _u8_Number_Beep u8_Number_Beep `uc  1 e 1 0 ]
+"10
+[v _u8_Current_Beep u8_Current_Beep `uc  1 e 1 0 ]
+"11
+[v _u8_Beeper_State u8_Beeper_State `uc  1 e 1 0 ]
+"14
+[v _BEEP_PRESS_OK BEEP_PRESS_OK `DCCS51  1 e 4 0 ]
+"16
+[v _BEEP_ON_SETTING BEEP_ON_SETTING `DCC[2]S51  1 e 8 0 ]
+"18
+[v _BEEP_SETTING_OK BEEP_SETTING_OK `DCC[2]S51  1 e 8 0 ]
+"20
+[v _BEEP_SETTING_ERROR BEEP_SETTING_ERROR `DCC[3]S51  1 e 12 0 ]
+"7 E:\GITHUB\IR_Project\IR_project.X\APP/APP_LEDs.c
 [v _LED_Active_Blink LED_Active_Blink `E7  1 e 1 0 ]
-"884 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1825.h
+"884 C:\Program Files\Microchip\xc8\v1.37\include\pic16f1825.h
 [v _PR2 PR2 `VEuc  1 e 1 @27 ]
-[s S135 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+[s S217 . 1 `uc 1 T2CKPS0 1 0 :1:0 
 `uc 1 T2CKPS1 1 0 :1:1 
 `uc 1 TMR2ON 1 0 :1:2 
 `uc 1 T2OUTPS0 1 0 :1:3 
@@ -59,13 +117,13 @@ LED_STATE_MAX 255
 `uc 1 T2OUTPS3 1 0 :1:6 
 ]
 "924
-[s S143 . 1 `uc 1 T2CKPS 1 0 :2:0 
+[s S225 . 1 `uc 1 T2CKPS 1 0 :2:0 
 `uc 1 . 1 0 :1:2 
 `uc 1 T2OUTPS 1 0 :4:3 
 ]
-[u S147 . 1 `S135 1 . 1 0 `S143 1 . 1 0 ]
-[v _T2CONbits T2CONbits `VES147  1 e 1 @28 ]
-[s S52 . 1 `uc 1 TRISA0 1 0 :1:0 
+[u S229 . 1 `S217 1 . 1 0 `S225 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES229  1 e 1 @28 ]
+[s S134 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -73,9 +131,9 @@ LED_STATE_MAX 255
 `uc 1 TRISA5 1 0 :1:5 
 ]
 "1092
-[u S59 . 1 `S52 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES59  1 e 1 @140 ]
-[s S23 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S141 . 1 `S134 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES141  1 e 1 @140 ]
+[s S105 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -83,8 +141,8 @@ LED_STATE_MAX 255
 `uc 1 TRISC5 1 0 :1:5 
 ]
 "1141
-[u S30 . 1 `S23 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES30  1 e 1 @142 ]
+[u S112 . 1 `S105 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES112  1 e 1 @142 ]
 "1942
 [v _LATC LATC `VEuc  1 e 1 @270 ]
 "2673
@@ -93,7 +151,7 @@ LED_STATE_MAX 255
 [v _CCPR2L CCPR2L `VEuc  1 e 1 @664 ]
 "4430
 [v _CCP2CON CCP2CON `VEuc  1 e 1 @666 ]
-[s S73 . 1 `uc 1 CCP2M0 1 0 :1:0 
+[s S155 . 1 `uc 1 CCP2M0 1 0 :1:0 
 `uc 1 CCP2M1 1 0 :1:1 
 `uc 1 CCP2M2 1 0 :1:2 
 `uc 1 CCP2M3 1 0 :1:3 
@@ -103,13 +161,13 @@ LED_STATE_MAX 255
 `uc 1 P2M1 1 0 :1:7 
 ]
 "4452
-[s S82 . 1 `uc 1 CCP2M 1 0 :4:0 
+[s S164 . 1 `uc 1 CCP2M 1 0 :4:0 
 `uc 1 DC2B 1 0 :2:4 
 `uc 1 P2M 1 0 :2:6 
 ]
-[u S86 . 1 `S73 1 . 1 0 `S82 1 . 1 0 ]
-[v _CCP2CONbits CCP2CONbits `VES86  1 e 1 @666 ]
-[s S103 . 1 `uc 1 C1TSEL0 1 0 :1:0 
+[u S168 . 1 `S155 1 . 1 0 `S164 1 . 1 0 ]
+[v _CCP2CONbits CCP2CONbits `VES168  1 e 1 @666 ]
+[s S185 . 1 `uc 1 C1TSEL0 1 0 :1:0 
 `uc 1 C1TSEL1 1 0 :1:1 
 `uc 1 C2TSEL0 1 0 :1:2 
 `uc 1 C2TSEL1 1 0 :1:3 
@@ -119,13 +177,27 @@ LED_STATE_MAX 255
 `uc 1 C4TSEL1 1 0 :1:7 
 ]
 "4727
-[s S112 . 1 `uc 1 C1TSEL 1 0 :2:0 
+[s S194 . 1 `uc 1 C1TSEL 1 0 :2:0 
 `uc 1 C2TSEL 1 0 :2:2 
 `uc 1 C3TSEL 1 0 :2:4 
 `uc 1 C4TSEL 1 0 :2:6 
 ]
-[u S117 . 1 `S103 1 . 1 0 `S112 1 . 1 0 ]
-[v _CCPTMRSbits CCPTMRSbits `VES117  1 e 1 @670 ]
+[u S199 . 1 `S185 1 . 1 0 `S194 1 . 1 0 ]
+[v _CCPTMRSbits CCPTMRSbits `VES199  1 e 1 @670 ]
+[s S324 . 1 `uc 1 IOCAN0 1 0 :1:0 
+`uc 1 IOCAN1 1 0 :1:1 
+`uc 1 IOCAN2 1 0 :1:2 
+`uc 1 IOCAN3 1 0 :1:3 
+`uc 1 IOCAN4 1 0 :1:4 
+`uc 1 IOCAN5 1 0 :1:5 
+]
+"5194
+[s S331 . 1 `uc 1 IOCAN 1 0 :6:0 
+]
+[u S333 . 1 `S324 1 . 1 0 `S331 1 . 1 0 ]
+[v _IOCANbits IOCANbits `VES333  1 e 1 @914 ]
+"5233
+[v _IOCAF IOCAF `VEuc  1 e 1 @915 ]
 "6386
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "6422
@@ -140,24 +212,26 @@ LED_STATE_MAX 255
 [v _RA2 RA2 `VEb  1 e 0 @98 ]
 "6906
 [v _TRISA2 TRISA2 `VEb  1 e 0 @1122 ]
-"14 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\HAL/HAL_IR.c
+"7 E:\GITHUB\IR_Project\IR_project.X\HAL/HAL_Buttons.c
+[v _f_Button_Interrupt_Handler f_Button_Interrupt_Handler `*.1*.1(v  1 e 1 0 ]
+"14 E:\GITHUB\IR_Project\IR_project.X\HAL/HAL_IR.c
 [v _f_IR_Interrupt_Handler f_IR_Interrupt_Handler `*.1*.1(v  1 e 1 0 ]
-"26 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\main.c
+"26 E:\GITHUB\IR_Project\IR_project.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
 "40
 } 0
-"22 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\user.c
+"22 E:\GITHUB\IR_Project\IR_project.X\user.c
 [v _InitApp InitApp `(v  1 e 1 0 ]
 {
 "31
 } 0
-"18 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\system.c
+"18 E:\GITHUB\IR_Project\IR_project.X\system.c
 [v _ConfigureOscillator ConfigureOscillator `(v  1 e 1 0 ]
 {
 "25
 } 0
-"23 H:\GG_Drive\2_IR Switch\2_Technical Solution\FW Project\IR_project.X\interrupts.c
+"23 E:\GITHUB\IR_Project\IR_project.X\interrupts.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
 "50

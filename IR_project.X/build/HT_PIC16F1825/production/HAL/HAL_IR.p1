@@ -1,6 +1,6 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [v F2662 `(v ~T0 @X0 0 tf ]
-"2673 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1825.h
+"2673 C:\Program Files\Microchip\xc8\v1.37\include\pic16f1825.h
 [v _ANSELA `Vuc ~T0 @X0 0 e@396 ]
 "6906
 [v _TRISA2 `Vb ~T0 @X0 0 e@1122 ]
@@ -19,7 +19,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic16f1825.h: 49: extern volatile unsigned char INDF0 @ 0x000;
-"51 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1825.h
+"51 C:\Program Files\Microchip\xc8\v1.37\include\pic16f1825.h
 [; ;pic16f1825.h: 51: asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
 [; ;pic16f1825.h: 54: typedef union {
@@ -2642,7 +2642,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;HAL_IR.c: 24: f_IR_Interrupt_Handler = f_p_handler;
 "24
 [e = _f_IR_Interrupt_Handler _f_p_handler ]
-[; ;HAL_IR.c: 25: INTEDG = bl_Rasing_Or_Falling;
+[; ;HAL_IR.c: 25: INTEDG = (unsigned char)bl_Rasing_Or_Falling;
 "25
 [e = _INTEDG -> _bl_Rasing_Or_Falling `b ]
 [; ;HAL_IR.c: 26: INTE=1;

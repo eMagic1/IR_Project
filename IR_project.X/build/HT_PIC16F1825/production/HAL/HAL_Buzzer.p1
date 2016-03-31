@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"1083 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1825.h
+"1083 C:\Program Files\Microchip\xc8\v1.37\include\pic16f1825.h
 [s S65 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S65 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 ]
 "1082
@@ -52,7 +52,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic16f1825.h: 49: extern volatile unsigned char INDF0 @ 0x000;
-"51 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1825.h
+"51 C:\Program Files\Microchip\xc8\v1.37\include\pic16f1825.h
 [; ;pic16f1825.h: 51: asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
 [; ;pic16f1825.h: 54: typedef union {
@@ -2639,6 +2639,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 187: extern __bit __powerdown;
 [; ;pic.h: 188: extern __bit __timeout;
 [; ;..\system.h: 19: void ConfigureOscillator(void);
+[; ;HAL_Buzzer.h: 15: void HAL_Buzzer_GPIO_Init(void);
+[; ;HAL_Buzzer.h: 16: void HAL_Buzzer_PWM_Init(unsigned short frequency_Khz, unsigned char Duty);
+[; ;HAL_Buzzer.h: 17: void HAL_Buzzer_On(void);
+[; ;HAL_Buzzer.h: 18: void HAL_Buzzer_Off(void);
 "15 HAL/HAL_Buzzer.c
 [v _HAL_Buzzer_GPIO_Init `(v ~T0 @X0 1 ef ]
 "16
@@ -2658,14 +2662,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 324 ]
 }
 "26
-[v _HAL_Buzzer_PWM_Init `(v ~T0 @X0 1 ef2`uc`uc ]
+[v _HAL_Buzzer_PWM_Init `(v ~T0 @X0 1 ef2`us`uc ]
 "27
 {
-[; ;HAL_Buzzer.c: 26: void HAL_Buzzer_PWM_Init(unsigned char frequency_Khz, unsigned char Duty)
+[; ;HAL_Buzzer.c: 26: void HAL_Buzzer_PWM_Init(unsigned short frequency_Khz, unsigned char Duty)
 [; ;HAL_Buzzer.c: 27: {
 [e :U _HAL_Buzzer_PWM_Init ]
 "26
-[v _frequency_Khz `uc ~T0 @X0 1 r1 ]
+[v _frequency_Khz `us ~T0 @X0 1 r1 ]
 [v _Duty `uc ~T0 @X0 1 r2 ]
 "27
 [f ]
@@ -2684,7 +2688,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _CCP2CON -> -> 12 `i `uc ]
 [; ;HAL_Buzzer.c: 35: u8_Prescaler = (500000L*10)/(frequency_Khz * 4 * 256);
 "35
-[e = _u8_Prescaler -> / * -> 500000 `l -> -> 10 `i `l -> * * -> _frequency_Khz `i -> 4 `i -> 256 `i `l `uc ]
+[e = _u8_Prescaler -> / * -> 500000 `l -> -> 10 `i `l -> * * -> _frequency_Khz `ui -> -> 4 `i `ui -> -> 256 `i `ui `l `uc ]
 [; ;HAL_Buzzer.c: 36: if(u8_Prescaler%10 > 5)
 "36
 [e $ ! > % -> _u8_Prescaler `i -> 10 `i -> 5 `i 326  ]
@@ -2713,13 +2717,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;HAL_Buzzer.c: 43: }
 [; ;HAL_Buzzer.c: 45: u8_Period = 500000L / ( frequency_Khz * 4 * u8_Prescaler ) - 1;
 "45
-[e = _u8_Period -> - / -> 500000 `l -> * * -> _frequency_Khz `i -> 4 `i -> _u8_Prescaler `i `l -> -> 1 `i `l `uc ]
+[e = _u8_Period -> - / -> 500000 `l -> * * -> _frequency_Khz `ui -> -> 4 `i `ui -> _u8_Prescaler `ui `l -> -> 1 `i `l `uc ]
 [; ;HAL_Buzzer.c: 46: PR2 = u8_Period;
 "46
 [e = _PR2 _u8_Period ]
 [; ;HAL_Buzzer.c: 48: u8_Duty = (500000L * Duty)/(frequency_Khz * u8_Prescaler *100);
 "48
-[e = _u8_Duty -> / * -> 500000 `l -> _Duty `l -> * * -> _frequency_Khz `i -> _u8_Prescaler `i -> 100 `i `l `uc ]
+[e = _u8_Duty -> / * -> 500000 `l -> _Duty `l -> * * -> _frequency_Khz `ui -> _u8_Prescaler `ui -> -> 100 `i `ui `l `uc ]
 [; ;HAL_Buzzer.c: 49: CCPR2L = u8_Duty;
 "49
 [e = _CCPR2L _u8_Duty ]

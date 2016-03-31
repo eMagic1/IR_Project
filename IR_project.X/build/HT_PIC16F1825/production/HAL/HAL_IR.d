@@ -1,1 +1,0 @@
- build/HT_PIC16F1825/production/HAL/HAL_IR.d  build/HT_PIC16F1825/production/HAL/HAL_IR.p1:  HAL/HAL_IR.c HAL/HAL_IR.h

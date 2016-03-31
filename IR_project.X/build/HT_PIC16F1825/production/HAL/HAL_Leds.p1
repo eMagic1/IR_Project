@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"1132 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1825.h
+"1132 C:\Program Files\Microchip\xc8\v1.37\include\pic16f1825.h
 [s S67 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S67 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 ]
 "1131
@@ -13,7 +13,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic16f1825.h: 49: extern volatile unsigned char INDF0 @ 0x000;
-"51 C:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1825.h
+"51 C:\Program Files\Microchip\xc8\v1.37\include\pic16f1825.h
 [; ;pic16f1825.h: 51: asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
 [; ;pic16f1825.h: 54: typedef union {

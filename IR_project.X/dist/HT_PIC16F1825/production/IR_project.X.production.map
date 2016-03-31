@@ -2,10 +2,10 @@ Microchip MPLAB XC8 Compiler V1.37 ()
 
 Linker command line:
 
--W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v1.37\dat\en_msgs.txt -cs \
+-W-3 --edf=C:\Program Files\Microchip\xc8\v1.37\dat\en_msgs.txt -cs \
   -h+dist/HT_PIC16F1825/production\IR_project.X.production.sym \
   --cmf=dist/HT_PIC16F1825/production\IR_project.X.production.cmf -z \
-  -Q16F1825 -oC:\Users\mle\AppData\Local\Temp\s12h8.2 \
+  -Q16F1825 -oC:\Users\Minh\AppData\Local\Temp\s5vs.2 \
   -Mdist/HT_PIC16F1825/production/IR_project.X.production.map -E1 -ver=XC8 \
   -ASTACK=02000h-023efh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -32,7 +32,7 @@ Linker command line:
   -pconfig=CONFIG -DCONFIG=2 -AIDLOC=08000h-08003h -pidloc=IDLOC -DIDLOC=2 \
   -AEEDATA=00h-0FFh/0F000h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 -k \
-  C:\Users\mle\AppData\Local\Temp\s12h8.obj \
+  C:\Users\Minh\AppData\Local\Temp\s5vs.obj \
   dist/HT_PIC16F1825/production\IR_project.X.production.obj 
 
 Object code version is 3.11
@@ -42,34 +42,36 @@ Machine type is 16F1825
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\mle\AppData\Local\Temp\s12h8.obj
+C:\Users\Minh\AppData\Local\Temp\s5vs.obj
                 end_init                              D        D        2        8       0
                 reset_vec                             0        0        2        0       0
 dist/HT_PIC16F1825/production\IR_project.X.production.obj
-                cinit                                 F        F        9        8       0
+                cinit                                 F        F       13        8       0
                 intentry                              4        4        9        8       0
-                text2                                21       21        1        8       0
-                text1                                20       20        1        8       0
-                maintext                             18       18        7        8       0
-                cstackCOMMON                         73       73        1       70       1
-                dataCOMMON                           72       72        1       70       1
-                bssCOMMON                            70       70        2       70       1
-                idataCOMMON                          1F       1F        1        8       0
+                text2                                4B       4B        1       84       0
+                text1                                4A       4A        1       84       0
+                maintext                             42       42        7       84       0
+                cstackCOMMON                         7D       7D        1       70       1
+                dataCOMMON                           7C       7C        1       70       1
+                bssCOMMON                            70       70        C       70       1
+                stringtext                           22       22       20       44       0
+                idataCOMMON                          49       49        1       84       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
 
         CLASS   CODE           
                 end_init                              D        D        2         0
-                cinit                                 F        F        9         0
+                cinit                                 F        F       13         0
                 intentry                              4        4        9         0
                 reset_vec                             0        0        2         0
-                text2                                21       21        1         0
-                text1                                20       20        1         0
-                maintext                             18       18        7         0
-                idataCOMMON                          1F       1F        1         0
+                text2                                4B       4B        1         0
+                text1                                4A       4A        1         0
+                maintext                             42       42        7         0
+                idataCOMMON                          49       49        1         0
 
         CLASS   STRCODE        
+                stringtext                           22       22       20         0
 
         CLASS   STRING         
 
@@ -78,9 +80,9 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   ENTRY          
 
         CLASS   COMMON         
-                cstackCOMMON                         73       73        1         1
-                dataCOMMON                           72       72        1         1
-                bssCOMMON                            70       70        2         1
+                cstackCOMMON                         7D       7D        1         1
+                dataCOMMON                           7C       7C        1         1
+                bssCOMMON                            70       70        C         1
 
         CLASS   BANK0          
 
@@ -229,7 +231,9 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
 
                 reset_vec                      000000  000002  000002         0       0  CODE        2
                 intentry                       000004  00001E  000022         8       0  CODE        2
-                bssCOMMON                      000070  000004  000074        70       1  COMMON      1
+                stringtext                     000022  000020  000042        44       0  STRCODE     2
+                bssCOMMON                      000070  00000E  00007E        70       1  COMMON      1
+                maintext                       000042  00000A  00004C        84       0  CODE        2
 
 
 UNUSED ADDRESS RANGES
@@ -250,14 +254,13 @@ UNUSED ADDRESS RANGES
         BANK9            04A0-04EF             50           1
         BIGRAM           2000-23EF            3F0           1
         CODE             0002-0003              2           2
-                         0022-1FFF            800
-        COMMON           0074-007D              A           1
+                         004C-1FFF            800
         CONFIG           8007-8008              2           2
         CONST            0002-0003              2           2
-                         0022-1FFF            100
+                         004C-1FFF            100
         EEDATA           F000-F0FF            100           2
         ENTRY            0002-0003              2           2
-                         0022-1FFF            100
+                         004C-1FFF            100
         IDLOC            8000-8003              4           2
         RAM              0020-006F             50           1
                          00A0-00EF             50
@@ -306,27 +309,33 @@ UNUSED ADDRESS RANGES
         SFR9             0480-049F             20           1
         STACK            2000-23EF            3F0           1
         STRCODE          0002-0003              2           2
-                         0022-1FFF           1FDE
+                         004C-1FFF           1FB4
         STRING           0002-0003              2           2
-                         0022-1FFF            100
+                         004C-1FFF            100
 
                                   Symbol Table
 
-LEDs_Blink_Handler@e_State    bssCOMMON    0070
+LEDs_Blink_Handler@e_State    bssCOMMON    0076
 _ANSELA                       (abs)        018C
+_BEEP_ON_SETTING              stringtext   002E
+_BEEP_PRESS_OK                stringtext   003E
+_BEEP_SETTING_ERROR           stringtext   0022
+_BEEP_SETTING_OK              stringtext   0036
 _CCP2CON                      (abs)        029A
 _CCP2CONbits                  (abs)        029A
 _CCPR2L                       (abs)        0298
 _CCPTMRSbits                  (abs)        029E
-_ConfigureOscillator          text2        0021
+_ConfigureOscillator          text2        004B
 _GIE                          (abs)        005F
 _INTE                         (abs)        005C
 _INTEDG                       (abs)        04AE
 _INTF                         (abs)        0059
-_InitApp                      text1        0020
+_IOCAF                        (abs)        0393
+_IOCANbits                    (abs)        0392
+_InitApp                      text1        004A
 _LATA5                        (abs)        0865
 _LATC                         (abs)        010E
-_LED_Active_Blink             dataCOMMON   0072
+_LED_Active_Blink             dataCOMMON   007C
 _PR2                          (abs)        001B
 _RA2                          (abs)        0062
 _T2CONbits                    (abs)        001C
@@ -368,7 +377,7 @@ __Hbank8                      bank8        0000
 __Hbank9                      bank9        0000
 __Hbigram                     bigram       0000
 __HbssCOMMON                  bssCOMMON    0000
-__Hcinit                      cinit        0018
+__Hcinit                      cinit        0022
 __Hclrtext                    clrtext      0000
 __Hcode                       code         0000
 __Hcommon                     common       0000
@@ -418,12 +427,13 @@ __Hsfr6                       sfr6         0000
 __Hsfr7                       sfr7         0000
 __Hsfr8                       sfr8         0000
 __Hsfr9                       sfr9         0000
-__Hspace_0                    (abs)        0022
-__Hspace_1                    (abs)        0074
+__Hspace_0                    (abs)        004C
+__Hspace_1                    (abs)        007E
 __Hspace_2                    (abs)        0000
 __Hspace_3                    (abs)        0000
 __Hstack                      stack        0000
 __Hstrings                    strings      0000
+__Hstringtext                 stringtext   0000
 __Htext                       text         0000
 __Labs1                       abs1         0000
 __Lbank0                      bank0        0000
@@ -516,37 +526,49 @@ __Lspace_2                    (abs)        0000
 __Lspace_3                    (abs)        0000
 __Lstack                      stack        0000
 __Lstrings                    strings      0000
+__Lstringtext                 stringtext   0000
 __Ltext                       text         0000
-__S0                          (abs)        0022
-__S1                          (abs)        0074
+__S0                          (abs)        004C
+__S1                          (abs)        007E
 __S2                          (abs)        0000
 __S3                          (abs)        0000
 ___int_sp                     stack        0000
 ___latbits                    (abs)        0002
 ___sp                         stack        0000
-__end_of_ConfigureOscillator  text2        0022
-__end_of_InitApp              text1        0021
-__end_of__initialization      cinit        0014
+__end_of_BEEP_ON_SETTING      stringtext   0036
+__end_of_BEEP_PRESS_OK        stringtext   0042
+__end_of_BEEP_SETTING_ERROR   stringtext   002E
+__end_of_BEEP_SETTING_OK      stringtext   003E
+__end_of_ConfigureOscillator  text2        004C
+__end_of_InitApp              text1        004B
+__end_of__initialization      cinit        001E
 __end_of_isr                  intentry     000D
-__end_of_main                 maintext     001F
+__end_of_main                 maintext     0049
 __initialization              cinit        000F
 __pbssCOMMON                  bssCOMMON    0070
-__pcstackCOMMON               cstackCOMMON 0073
-__pdataCOMMON                 dataCOMMON   0072
-__pidataCOMMON                idataCOMMON  001F
+__pcstackCOMMON               cstackCOMMON 007D
+__pdataCOMMON                 dataCOMMON   007C
+__pidataCOMMON                idataCOMMON  0049
 __pintentry                   intentry     0004
-__pmaintext                   maintext     0018
-__ptext1                      text1        0020
-__ptext2                      text2        0021
+__pmaintext                   maintext     0042
+__pstringtext                 stringtext   0022
+__ptext1                      text1        004A
+__ptext2                      text2        004B
 __size_of_ConfigureOscillator (abs)        0000
 __size_of_InitApp             (abs)        0000
 __size_of_isr                 (abs)        0000
 __size_of_main                (abs)        0000
-_f_IR_Interrupt_Handler       bssCOMMON    0071
+_f_Button_Interrupt_Handler   bssCOMMON    0077
+_f_IR_Interrupt_Handler       bssCOMMON    0078
 _isr                          intentry     0004
-_main                         maintext     0018
+_main                         maintext     0042
+_p_strt_Time_Beep             bssCOMMON    0074
+_strt_Beeper_Value            bssCOMMON    0070
+_u8_Beeper_State              bssCOMMON    0079
+_u8_Current_Beep              bssCOMMON    007A
+_u8_Number_Beep               bssCOMMON    007B
 btemp                         (abs)        007E
-end_of_initialization         cinit        0014
+end_of_initialization         cinit        001E
 int$flags                     (abs)        007E
 intlevel0                     functab      0000
 intlevel1                     functab      0000
@@ -711,22 +733,26 @@ interrupts.c
 interrupts.c estimated size: 10
 
 shared
-		__initialization		CODE           	000F	0000	6
+		_BEEP_PRESS_OK 		STRCODE        	003E	0000	5
+		__initialization		CODE           	000F	0000	16
+		_BEEP_ON_SETTING		STRCODE        	002E	0000	9
+		_BEEP_SETTING_OK		STRCODE        	0036	0000	9
+		_BEEP_SETTING_ERROR		STRCODE        	0022	0000	13
 
-shared estimated size: 6
+shared estimated size: 52
 
 user.c
-		_InitApp       		CODE           	0020	0000	2
+		_InitApp       		CODE           	004A	0000	2
 
 user.c estimated size: 2
 
 main.c
-		_main          		CODE           	0018	0000	8
+		_main          		CODE           	0042	0000	8
 
 main.c estimated size: 8
 
 system.c
-		_ConfigureOscillator		CODE           	0021	0000	2
+		_ConfigureOscillator		CODE           	004B	0000	2
 
 system.c estimated size: 2
 
