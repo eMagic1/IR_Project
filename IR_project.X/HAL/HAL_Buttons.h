@@ -7,7 +7,7 @@
 
 #ifndef HAL_BUTTONS_H
 #define	HAL_BUTTONS_H
-typedef void (*f_void_IRS)(void);
+typedef void f_void_IRS(void);
 
 typedef enum
 {

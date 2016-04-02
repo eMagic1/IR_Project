@@ -14,40 +14,70 @@
 /******************************************************************************/
 /* Interrupt Routines                                                         */
 /******************************************************************************/
+typedef void f_void_IRS(void);
 
-/* Baseline devices don't have interrupts. Note that some PIC16's 
- * are baseline devices.  Unfortunately the baseline detection macro is 
- * _PIC12 */
-#ifndef _PIC12
+extern f_void_IRS * f_Button_Interrupt_Handler;
+extern f_void_IRS * f_IR_Interrupt_Handler;
+extern f_void_IRS * f_Timer_0_IRS_Handler;
+extern f_void_IRS * f_Timer_1_IRS_Handler;
+extern f_void_IRS * f_IR_Interrupt_Handler;
+extern f_void_IRS * f_Button_Interrupt_Handler;
 
-void interrupt isr(void)
+extern unsigned short u16_Max_Count_Timer0_Interrupt;
+extern unsigned short u16_Max_Count_Timer1_Interrupt;
+extern unsigned short IR_Tick_Count;
+
+// Interrupt Handler
+void interrupt ISR(void)
 {
-    /* This code stub shows general interrupt handling.  Note that these
-    conditional statements are not handled within 3 seperate if blocks.
-    Do not use a seperate if block for each interrupt flag to avoid run
-    time errors. */
-
-#if 0
+    static unsigned short T0_Tick_Count = 0;
+    static unsigned short T1_Tick_Count = 0;
     
-    /* TODO Add interrupt routine code here. */
-
-    /* Determine which flag generated the interrupt */
-    if(<Interrupt Flag 1>)
-    {
-        <Interrupt Flag 1=0>; /* Clear Interrupt Flag 1 */
+    // INT External Interrupt
+    if(INTCONbits.INTF == 1)   // if the INT External Interrupt flag is set...
+    {        
+        f_IR_Interrupt_Handler();
+        INTF = 0;                
+        INTE = 1;      //enable INT interrupt
     }
-    else if (<Interrupt Flag 2>)
-    {
-        <Interrupt Flag 2=0>; /* Clear Interrupt Flag 2 */
+    
+    //button IRQ
+    if (IOCIF) 
+    {                                                
+        f_Button_Interrupt_Handler();
+        IOCIF = 0;                              //must clear the flag in software        
+        IOCIE = 1; 
     }
-    else
+    
+    //Timer0 Interrupt Handler
+    if (INTCONbits.TMR0IF ==1) // timer 0 interrupt
     {
-        /* Unhandled interrupts */
+        T0_Tick_Count++;
+        if(T0_Tick_Count > u16_Max_Count_Timer0_Interrupt)
+        {
+            f_Timer_0_IRS_Handler();
+            T0_Tick_Count = 0;
+        }
+        INTCONbits.TMR0IE = 1;
+        INTCONbits.TMR0IF = 0;   // clear the flag
     }
-
-#endif
-
+    // timer 1 Interrupt 
+    if(PIR1bits.TMR1IF == 1)
+    {
+        T1_Tick_Count++;
+        if(T1_Tick_Count > u16_Max_Count_Timer1_Interrupt)
+        {
+            f_Timer_1_IRS_Handler();
+            T1_Tick_Count = 0;
+        }
+        PIE1bits.TMR1IE = 1;
+        PIR1bits.TMR1IF = 0;   // clear the flag        
+    }
+    // Timer4 Interrupt- Freq = 33333.33 Hz - Period = 0.000030 seconds
+    if (PIR3bits.TMR4IF == 1)          // timer 4 interrupt flag
+    {
+        IR_Tick_Count++;
+        PIR3bits.TMR4IF = 0;  
+        PIE3bits.TMR4IE = 0; 
+    }
 }
-#endif
-
-

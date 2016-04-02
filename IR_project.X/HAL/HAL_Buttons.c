@@ -4,7 +4,7 @@
 #include <xc.h>
 #include "HAL_Buttons.h"
 
-f_void_IRS * f_Button_Interrupt_Handler;
+f_void_IRS *  f_Button_Interrupt_Handler;
 
 void HAL_Button_Init(f_void_IRS * p_f_Handler)
 {
@@ -20,11 +20,9 @@ void HAL_Button_Init(f_void_IRS * p_f_Handler)
     IOCAPbits.IOCAP0 = 1;
     IOCAPbits.IOCAP1 = 1;  
     IOCAPbits.IOCAP4 = 1; // positive edge 
-    
-    INTE = 1;      //enable INT interrupt
-    INTF = 0;      // clear INT interrupt flag
-    IOCAF = 0;
-    GIE = 1;       // enable global interrupt
+        
+    IOCIF = 0;
+    IOCIE = 1;   
     f_Button_Interrupt_Handler = p_f_Handler;    
 }
 
