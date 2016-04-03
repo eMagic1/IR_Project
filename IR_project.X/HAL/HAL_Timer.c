@@ -2,7 +2,8 @@
 #define __HAL_TIMER_C__
 
 #include <xc.h>
-#include "..\system.h"
+#include "../system.h"
+#include "common.h"
 #include "HAL_Timer.h"
 
 f_void_IRS * f_Timer_0_IRS_Handler;
@@ -121,13 +122,13 @@ void HAL_Timer1_Stop(void)
 
 unsigned short IR_Tick_Count = 0;
 
-void HAL_Timer46_Init(void)//0.3ms for 1 count
+void HAL_Timer46_Init(void)//0.1ms for 1 count
 {
     T4CON |= 0;        // bits 6-3 Post scaler 1:1 thru 1:16
     T4CONbits.TMR4ON = 1;  // bit 2 turn timer4 on;
     T4CONbits.T4CKPS1 = 0; // bits 1-0  Prescaler Rate Select bits
     T4CONbits.T4CKPS0 = 0;
-    PR4 = 150;         // PR4 (Timer4 Match value)
+    PR4 = 50;         // PR4 (Timer4 Match value) for 1ms
     
     // Interrupt Registers      
     PIR3bits.TMR4IF = 0;
@@ -136,6 +137,7 @@ void HAL_Timer46_Init(void)//0.3ms for 1 count
 
 void HAL_Timer4_Get_TickCount(unsigned short * value)
 {
+    TMR4 = 0;
     *value = IR_Tick_Count;
 }
 

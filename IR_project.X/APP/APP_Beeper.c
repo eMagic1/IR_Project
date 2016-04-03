@@ -2,6 +2,7 @@
 #define __APP_BEEPER_C__
 
 #include "APP_Beeper.h"
+#include "../HAL/common.h"
 #include "../HAL/HAL_Buzzer.h"
 #include "../HAL/HAL_Timer.h"
 

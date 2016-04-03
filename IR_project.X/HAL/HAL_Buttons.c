@@ -2,6 +2,7 @@
 #define __HAL_BUTTTON_C__
 
 #include <xc.h>
+#include "common.h"
 #include "HAL_Buttons.h"
 
 f_void_IRS *  f_Button_Interrupt_Handler;

@@ -1,6 +1,7 @@
 #ifndef __APP_BUTTON_C__
 #define __APP_BUTTON_C__
 #include "APP_Button.h"
+#include "../HAL/common.h"
 #include "../HAL/HAL_Buttons.h"
 #include "../HAL/HAL_Timer.h"
 

@@ -3,6 +3,7 @@
 
 #include "../HAL/HAL_Leds.h"
 #include "APP_LEDs.h"
+#include "../HAL/common.h"
 #include "../HAL/HAL_Timer.h"
 
 E_LED_ID LED_Active_Blink = LED_ID_MAX;

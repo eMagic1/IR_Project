@@ -17,6 +17,7 @@ void Read_State_Of_Load(LOAD_ID eLoadID, unsigned char * p_value)
 void Write_IR_Data(LOAD_ID eLoadID, unsigned short * p_Data, unsigned char u8_Len)
 {
     unsigned char u8_Index;
+    //need update write len :v
     for(u8_Index = 0; u8_Index <= u8_Len; u8_Index ++)
     {
         //write first byte

@@ -1,21 +1,23 @@
 /* 
- * File:   HAL_IR.h
- * Author: mle
+ * File:   HAL_Timer.h
+ * Author: Minh
  *
- * Created on March 29, 2016, 2:01 PM
+ * Created on April 2, 2016, 5:22 PM
  */
 
-#ifndef HAL_IR_H
-#define	HAL_IR_H
+#ifndef HAL_IRRRR_H
+#define	HAL_IRRRR_H
 
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
+void HAL_Init_IR_IO(void);
+void HAL_Set_Trigger_Edg_IR(unsigned char bl_Rasing_Or_Falling, f_void_IRS * f_p_handler);
 
 #ifdef	__cplusplus
 }
 #endif
 
-#endif	/* HAL_IR_H */
+#endif	/* HAL_TIMER_H */
 

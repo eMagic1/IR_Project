@@ -7,7 +7,7 @@
 
 #ifndef HAL_TIMER_H
 #define	HAL_TIMER_H
-typedef void f_void_IRS(void);
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
