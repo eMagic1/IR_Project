@@ -12,6 +12,8 @@
 /******************************************************************************/
 
 f_void_IRS * f_IR_Interrupt_Handler;
+f_void_IRS * f_IR_OverLoad_Handler;
+unsigned short u16_Condition_Overload = 0;
 
 void HAL_Init_IR_IO(void)
 {
@@ -25,5 +27,11 @@ void HAL_Set_Trigger_Edg_IR(unsigned char bl_Rasing_Or_Falling, f_void_IRS * f_p
     INTEDG = (unsigned char)bl_Rasing_Or_Falling;
     INTF=0;      // clear INT interrupt flag      
     INTE=1;      //enable INT interrupt   
+}
+
+void HAL_IR_Set_Overload_Handler(unsigned short u16_Condition, f_void_IRS * f_p_handler)
+{
+    u16_Condition_Overload = u16_Condition;
+    f_IR_OverLoad_Handler = f_p_handler;
 }
 #endif

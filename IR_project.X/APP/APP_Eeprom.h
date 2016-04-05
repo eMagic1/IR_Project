@@ -9,7 +9,11 @@
 
 #define STATE_ADDRESS   0
 #define STATE_SIZE      3
-#define IR_ADDRESS      STATE_ADDRESS + STATE_SIZE
+#define NUMBER_LOAD     3
+#define DATA_LEN_ADDRESS    STATE_ADDRESS + STATE_SIZE
+#define DATA_LEN_SIZE   1
+#define IR_ADDRESS      DATA_LEN_ADDRESS + DATA_LEN_SIZE * NUMBER_LOAD
+
 #define IR_DATA_WORD_SIZE    100
 
 typedef enum
@@ -22,9 +26,11 @@ typedef enum
 #ifdef	__cplusplus
 extern "C" {
 #endif
-
-
-
+    
+void Write_State_Of_Load(LOAD_ID eLoadID, unsigned char value);
+void Read_State_Of_Load(LOAD_ID eLoadID, unsigned char * p_value);
+void Write_IR_Data(LOAD_ID eLoadID, unsigned short * p_Data, unsigned char u8_Len);
+void Rread_IR_Data(LOAD_ID eLoadID, unsigned short * p_Data);
 
 #ifdef	__cplusplus
 }

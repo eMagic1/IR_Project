@@ -12,6 +12,11 @@ f_void_IRS * f_Timer_1_IRS_Handler;
 unsigned short u16_Max_Count_Timer0_Interrupt = 0;
 unsigned short u16_Max_Count_Timer1_Interrupt = 0;
 
+void HAL_Debonce(void)
+{
+    __delay_ms(100);//debounce
+}
+
 void HAL_Timer_0_Init(unsigned short timer_ms, f_void_IRS * f_p_func)
 {
     unsigned short u8_MaxValue;
@@ -151,4 +156,5 @@ void HAL_Timer4_Stop(void)
     PIR3bits.TMR4IF = 0;
     PIE3bits.TMR4IE = 0;         // disable Timer4 interrupts  
 }
+
 #endif

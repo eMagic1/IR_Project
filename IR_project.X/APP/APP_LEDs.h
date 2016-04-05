@@ -27,8 +27,9 @@ typedef enum
 extern "C" {
 #endif
 
-
-
+void LEDs_Change_State(E_LED_ID e_Leds_Id, E_LED_STATE e_Led_State);
+void LEDs_Blink(E_LED_ID e_Leds_Id);
+void LEDs_Stop_Blink(void);
 
 #ifdef	__cplusplus
 }

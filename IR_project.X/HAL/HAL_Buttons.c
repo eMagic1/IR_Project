@@ -27,7 +27,7 @@ void HAL_Button_Init(f_void_IRS * p_f_Handler)
     f_Button_Interrupt_Handler = p_f_Handler;    
 }
 
-void Get_Button_State(E_BUTTON_ID eButton_ID, unsigned char * state)
+void HAL_Button_Get_State(E_BUTTON_ID eButton_ID, unsigned char * state)
 {
     switch(eButton_ID)
     {

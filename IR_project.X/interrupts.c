@@ -22,10 +22,12 @@ extern f_void_IRS * f_Timer_0_IRS_Handler;
 extern f_void_IRS * f_Timer_1_IRS_Handler;
 extern f_void_IRS * f_IR_Interrupt_Handler;
 extern f_void_IRS * f_Button_Interrupt_Handler;
+extern f_void_IRS * f_IR_OverLoad_Handler;
 
 extern unsigned short u16_Max_Count_Timer0_Interrupt;
 extern unsigned short u16_Max_Count_Timer1_Interrupt;
 extern unsigned short IR_Tick_Count;
+extern unsigned short u16_Condition_Overload;
 
 // Interrupt Handler
 void interrupt ISR(void)
@@ -73,10 +75,14 @@ void interrupt ISR(void)
         PIE1bits.TMR1IE = 1;
         PIR1bits.TMR1IF = 0;   // clear the flag        
     }
-    // Timer4 Interrupt- Freq = 33333.33 Hz - Period = 0.000030 seconds
+    // Timer4 Interrupt-  Period = 0.000010 seconds
     if (PIR3bits.TMR4IF == 1)          // timer 4 interrupt flag
     {
         IR_Tick_Count++;
+        if(IR_Tick_Count > u16_Condition_Overload)
+        {
+            f_IR_OverLoad_Handler();
+        }
         PIR3bits.TMR4IF = 0;  
         PIE3bits.TMR4IE = 0; 
     }

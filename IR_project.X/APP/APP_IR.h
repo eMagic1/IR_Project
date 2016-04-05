@@ -12,6 +12,14 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
+#ifdef __APP_IR_C__    
+void APP_IR_Start_Read_Data(void);
+#else
+extern unsigned char IR_Has_Signal ;
+extern unsigned short IR_Data[254];
+extern unsigned char Number_Pulse ;
+extern void APP_IR_Start_Read_Data(void);
+#endif
 
 #ifdef	__cplusplus
 }

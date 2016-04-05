@@ -20,7 +20,7 @@ void LEDs_Change_State(E_LED_ID e_Leds_Id, E_LED_STATE e_Led_State)
         GPIO_Leds_Clear(e_Leds_Id);
     }
 }
-void LEDs_Blink_Handler(void)
+static void LEDs_Blink_Handler(void)
 {
     static E_LED_STATE e_State = LED_OFF;
     if( LED_Active_Blink != LED_ID_MAX)

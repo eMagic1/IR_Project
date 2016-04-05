@@ -8,6 +8,18 @@
 #ifndef APP_BEEPER_H
 #define	APP_BEEPER_H
 
+#define FREQUENCY_LOW 24400
+#define FREQUENCY_MED 28400
+#define FREQUENCY_HI  32000
+
+enum
+{
+    VOLUME_LOW = 0,
+    VOLUME_MED = 1,
+    VOLUME_HIGH = 2,
+    VOLUME_MAX = 3,
+}VOLUME_LEVEL; 
+
 typedef struct
 {
     unsigned short u16_Beeper_Frequency;
@@ -31,8 +43,10 @@ typedef enum
 extern "C" {
 #endif
 
-
-
+void BEEPER_Direct_Beep(void);
+void BEEPER_On_Setting(void);
+void BEEPER_Setting_OK(void);
+void BEEPER_Setting_Error(void);
 
 #ifdef	__cplusplus
 }

@@ -11,7 +11,7 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
-
+void HAL_Debonce(void);
 void HAL_Timer_0_Init(unsigned short timer_ms, f_void_IRS * f_p_func);
 void HAL_Timer0_Reset(void);
 void HAL_Timer0_Stop(void);

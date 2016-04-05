@@ -4,13 +4,9 @@
  *
  * Created on March 31, 2016, 9:10 PM
  */
-#ifndef APP_EEPROM_H
-#define	APP_EEPROM_H
 
-#define STATE_ADDRESS   0
-#define STATE_SIZE      3
-#define IR_ADDRESS      STATE_ADDRESS + STATE_SIZE
-#define IR_DATA_WORD_SIZE    100
+#ifndef APP_OPPTO_H
+#define	APP_OPPTO_H
 
 typedef enum
 {
@@ -25,13 +21,18 @@ typedef enum
     LOAD_ON  = 1,
     LOAD_STATE_MAX = 0xff,            
 }E_LOAD_STATE;
+
+
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
-
-
-
+#ifdef __APP_OPTO_C__
+void LOAD_Change_State(OPTO_LOAD_ID e_Load_Id, E_LOAD_STATE e_Load_State);
+#else 
+extern void LOAD_Change_State(OPTO_LOAD_ID e_Load_Id, E_LOAD_STATE e_Load_State);
+#endif
 #ifdef	__cplusplus
 }
 #endif

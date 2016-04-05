@@ -19,9 +19,13 @@ typedef enum
 #ifdef	__cplusplus
 extern "C" {
 #endif
+#ifdef __HAL_BUTTTON_C__    
 void HAL_Button_Init(f_void_IRS * p_f_Handler);
-void Get_Button_State(E_BUTTON_ID eButton_ID, unsigned char * state);
-
+void HAL_Button_Get_State(E_BUTTON_ID eButton_ID, unsigned char * state);
+#else
+extern void HAL_Button_Init(f_void_IRS * p_f_Handler);
+extern void HAL_Button_Get_State(E_BUTTON_ID eButton_ID, unsigned char * state);
+#endif
 #ifdef	__cplusplus
 }
 #endif
