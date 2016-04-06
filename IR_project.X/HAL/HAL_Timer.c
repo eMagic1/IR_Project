@@ -133,7 +133,7 @@ void HAL_Timer46_Init(void)//0.1ms for 1 count
     T4CONbits.TMR4ON = 1;  // bit 2 turn timer4 on;
     T4CONbits.T4CKPS1 = 0; // bits 1-0  Prescaler Rate Select bits
     T4CONbits.T4CKPS0 = 0;
-    PR4 = 50;         // PR4 (Timer4 Match value) for 1ms
+    PR4 = 50;         // PR4 (Timer4 Match value) for 0.1ms
     
     // Interrupt Registers      
     PIR3bits.TMR4IF = 0;

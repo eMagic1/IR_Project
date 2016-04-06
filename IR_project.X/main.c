@@ -10,6 +10,7 @@
 
 #include <stdint.h>        /* For uint8_t definition */
 #include <stdbool.h>       /* For true/false definition */
+#include <stdlib.h> 
 
 #include "HAL/common.h"
 #include "HAL/HAL_Buttons.h"
@@ -35,6 +36,49 @@
 /******************************************************************************/
 /* Main Program                                                               */
 /******************************************************************************/
+unsigned char Parse_Data(unsigned char * p_LoadID)
+{
+    unsigned char u8_Result = 0;
+    unsigned short Data;
+    unsigned char bLen = 0;
+    unsigned char delta_pulse;
+    unsigned char u8_Index_Load;
+    unsigned char u8_Index_Data;
+    
+    *p_LoadID = 0;
+    for ( u8_Index_Load = 0; u8_Index_Load< NUMBER_LOAD; u8_Index_Load++)
+    {
+        Read_IR_Data_Len(u8_Index_Load, &bLen);
+        if(bLen >= Number_Pulse)
+        {
+            delta_pulse = bLen - Number_Pulse;
+            bLen = Number_Pulse;
+        }
+        else
+        {
+            delta_pulse = Number_Pulse- bLen;          
+        }
+        if(delta_pulse*10 < bLen*2)// 20%
+        {
+            for(u8_Index_Data = 0; u8_Index_Data < bLen; u8_Index_Data++)
+            {
+                Read_IR_Data_At(u8_Index_Load, &Data, u8_Index_Data);
+                if( abs(IR_Data[u8_Index_Data]*10- Data*10) > IR_Data[u8_Index_Data]*2)//20%
+                {
+                    break;
+                }
+            }    
+            if(u8_Index_Data >= bLen)
+            {
+                u8_Result = 1;
+                *p_LoadID = u8_Index_Load + 1;
+                break;
+            }
+        }
+    }
+    
+    return u8_Result;
+}
 void main(void)
 {
     static unsigned char Setting_Timer_Is_Running = 0;
@@ -54,9 +98,19 @@ void main(void)
     //init state when start up (power up)    
     for(unsigned char i = 0; i < NUMBER_LOAD; i++)
     {
-        Read_State_Of_Load(1, &u8_State_Load);
-        LOAD_Change_State(Load_ID, u8_State_Load);
-        LEDs_Change_State(Load_ID, u8_State_Load);
+        Read_State_Of_Load(i, &u8_State_Load);
+        if(u8_State_Load < 2)
+        {
+            LOAD_Change_State(i, u8_State_Load);
+            LEDs_Change_State(i, u8_State_Load);
+        }
+        else
+        {
+            u8_State_Load = 0;
+            LOAD_Change_State(i, u8_State_Load);// turn off
+            LEDs_Change_State(i, u8_State_Load);
+            Write_State_Of_Load(i, &Load_State);
+        }
     }
     
     while(1)
@@ -121,21 +175,31 @@ void main(void)
                 LEDs_Change_State(Load_ID, Load_State);
                 //save state
                 Write_State_Of_Load(Load_ID, &Load_State);
+                Button_Release = 0;
             }
         }
         
         if((IR_Has_Signal)&&(Button_3s == 0))
         {
-            BEEPER_Direct_Beep();
-            //get satte
-            Read_State_Of_Load(Button_Release - 1, &u8_State_Load);
-            //chaneg load
-            Load_ID = Button_Release - 1;
-            Load_State = 1 - u8_State_Load;
-            LOAD_Change_State(Load_ID, Load_State);
-            LEDs_Change_State(Load_ID, Load_State);
-            //save state
-            Write_State_Of_Load(Load_ID, &Load_State);
+            if (Parse_Data(&Button_Release))
+            {
+                 BEEPER_Direct_Beep();
+                //get satte
+                Read_State_Of_Load(Button_Release - 1, &u8_State_Load);
+                //chaneg load            
+                Load_ID = Button_Release - 1;
+                Load_State = 1 - u8_State_Load;
+                LOAD_Change_State(Load_ID, Load_State);
+                LEDs_Change_State(Load_ID, Load_State);
+                //save state
+                Write_State_Of_Load(Load_ID, &Load_State);
+                Button_Release = 0;
+            }
+            else
+            {
+                BEEPER_Setting_Error();
+            }
+            IR_Has_Signal = 0;
         }
         CLRWDT();
         /* TODO <INSERT USER APPLICATION CODE HERE> */

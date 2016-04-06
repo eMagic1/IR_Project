@@ -8,7 +8,7 @@
 
 
 unsigned char IR_Has_Signal = 0;
-unsigned short IR_Data[254];
+unsigned short IR_Data[100];
 unsigned char Number_Pulse = 0;
 
 static void IR_IRQ_Handler(void)
