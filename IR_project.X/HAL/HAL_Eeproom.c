@@ -2,6 +2,7 @@
 #define __HAL_EEPROM_C__
 
 #include <xc.h> 
+#include "HAL_Eeprom.h"
 
 void HAL_Eeprom_Write(int i_Address, unsigned char u8_Data)
 {

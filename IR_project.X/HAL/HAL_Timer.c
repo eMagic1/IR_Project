@@ -19,7 +19,7 @@ void HAL_Debonce(void)
 
 void HAL_Timer_0_Init(unsigned short timer_ms, f_void_IRS * f_p_func)
 {
-    unsigned short u8_MaxValue;
+    unsigned int u8_MaxValue;
     unsigned short u8_Times;
          
     TMR0 = 0;
@@ -88,7 +88,7 @@ void HAL_Timer1_Init(unsigned short timer_ms, f_void_IRS * f_p_func)
     else
     {        
         u8_Times = (timer_ms/u8_MaxValue);
-        if(u8_Times > 65535)
+        if(u8_Times >= 65535)
         {
             u16_Value = 0; 
             TMR1H = 0;

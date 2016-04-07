@@ -17,16 +17,21 @@ void Read_State_Of_Load(LOAD_ID eLoadID, unsigned char * p_value)
 void Write_IR_Data(LOAD_ID eLoadID, unsigned short * p_Data, unsigned char u8_Len)
 {
     unsigned char u8_Index;
+    int Address;
+    unsigned char Data = 0;
     //need update write len :v
     HAL_Eeprom_Write(DATA_LEN_ADDRESS + eLoadID * DATA_LEN_SIZE, u8_Len);
     for(u8_Index = 0; u8_Index <= u8_Len; u8_Index ++)
     {
         //write first byte
-        HAL_Eeprom_Write(IR_ADDRESS + eLoadID*IR_DATA_WORD_SIZE + 2*u8_Index    , (unsigned char)(p_Data[u8_Index]&&0x00FF));
+        Address = IR_ADDRESS + eLoadID*IR_DATA_WORD_SIZE + 2*u8_Index;
+        Data = (unsigned char)(p_Data[u8_Index]&&0x00FF);
+        HAL_Eeprom_Write( Address , Data);
         //write next byte
-        HAL_Eeprom_Write(IR_ADDRESS + eLoadID*IR_DATA_WORD_SIZE + 2*u8_Index + 1, (unsigned char)((p_Data[u8_Index]&&0xFF00)>>8));
+        HAL_Eeprom_Write(Address + 1, (unsigned char)((p_Data[u8_Index]&&0xFF00)>>8));
     }
 }
+#if 0
 void Read_IR_Data(LOAD_ID eLoadID, unsigned short * p_Data, unsigned char * p_Len)
 {
     unsigned char u8_Index;
@@ -45,7 +50,7 @@ void Read_IR_Data(LOAD_ID eLoadID, unsigned short * p_Data, unsigned char * p_Le
         p_Data[u8_Index] = (unsigned short)(u8_Data_H*256 + u8_Data_L);
     }
 }
-
+#endif
 void Read_IR_Data_Len(LOAD_ID eLoadID, unsigned char * p_Len)
 {
     HAL_Eeprom_Read(DATA_LEN_ADDRESS + eLoadID * DATA_LEN_SIZE, p_Len);

@@ -13,7 +13,7 @@ unsigned char Number_Pulse = 0;
 
 static void IR_IRQ_Handler(void)
 {    
-    static unsigned char edge;
+    static unsigned char edge = 0;
     if(Number_Pulse == 0)//start IR signal
     {
         //falling edge
@@ -29,7 +29,7 @@ static void IR_IRQ_Handler(void)
         HAL_Timer4_Get_TickCount(&IR_Data[Number_Pulse - 1]);
         Number_Pulse++;
         HAL_Timer4_Reset();
-        edge = edge - 1; // toggle edge
+        edge = 1 - edge; // toggle edge
         HAL_Set_Trigger_Edg_IR(edge, &IR_IRQ_Handler);
     }
 }

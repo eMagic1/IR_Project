@@ -12,7 +12,7 @@ void LOAD_Change_State(OPTO_LOAD_ID e_Load_Id, E_LOAD_STATE e_Load_State)
     }
     else
     {
-        GPIO_OPTO_Set(e_Load_Id);
+        GPIO_OPTO_Clear(e_Load_Id);
     }
 }
 

@@ -20,7 +20,7 @@ static void Button_3s_Handler(void)
         {
             Button_Press = 0;
             Button_Release = 0;
-            Button_3s = i+1; //save state 3s
+            Button_3s = (unsigned char)i+1; //save state 3s
             //end timer here
             HAL_Timer1_Stop();
             break;

@@ -42,7 +42,7 @@ typedef enum
 #ifdef	__cplusplus
 extern "C" {
 #endif
-
+void BEEPER_Set_Volume_Frequency(unsigned short frequency, unsigned short Volume);
 void BEEPER_Direct_Beep(void);
 void BEEPER_On_Setting(void);
 void BEEPER_Setting_OK(void);
