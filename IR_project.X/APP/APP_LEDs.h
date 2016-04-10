@@ -10,9 +10,9 @@
 
 typedef enum
 {
-    LED_1 = 3,
-    LED_2 = 4,
-    LED_3 = 5,
+    LED_1 = 0,
+    LED_2 = 1,
+    LED_3 = 2,
     LED_ID_MAX = 0xFF,
 }E_LED_ID;
 

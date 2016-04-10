@@ -13,11 +13,11 @@ void LEDs_Change_State(E_LED_ID e_Leds_Id, E_LED_STATE e_Led_State)
 {
     if(e_Led_State ==  LED_ON)
     {
-        GPIO_Leds_Set(e_Leds_Id);
+        GPIO_Leds_Set(e_Leds_Id + 3);//Led 0 is RC3
     }
     else
     {
-        GPIO_Leds_Clear(e_Leds_Id);
+        GPIO_Leds_Clear(e_Leds_Id + 3);
     }
 }
 static void LEDs_Blink_Handler(void)

@@ -32,7 +32,7 @@
 
 /* TODO Fill in your config bits here.  Use the configuration bits generator/ */
 // CONFIG1
-#pragma config FOSC = HS        // Oscillator Selection (HS Oscillator, High-speed crystal/resonator connected between OSC1 and OSC2 pins)
+#pragma config FOSC = INTOSC    // Oscillator Selection (INTOSC oscillator: I/O function on CLKIN pin)
 #pragma config WDTE = ON        // Watchdog Timer Enable (WDT enabled)
 #pragma config PWRTE = OFF      // Power-up Timer Enable (PWRT disabled)
 #pragma config MCLRE = ON       // MCLR Pin Function Select (MCLR/VPP pin function is MCLR)
