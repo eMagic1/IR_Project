@@ -14,7 +14,7 @@ extern "C" {
 
 void HAL_Init_IR_IO(void);
 void HAL_Set_Trigger_Edg_IR(unsigned char bl_Rasing_Or_Falling, f_void_IRS * f_p_handler);
-void HAL_IR_Set_Overload_Handler(unsigned short u16_Condition, f_void_IRS * f_p_handler);
+void HAL_IR_Set_Overload_Handler(f_void_IRS * f_p_handler);
 #ifdef	__cplusplus
 }
 #endif

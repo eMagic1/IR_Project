@@ -8,7 +8,7 @@
 #ifndef APP_IR_H
 #define	APP_IR_H
 
-#define MAX_COUNT_ON_PLUSE 3000// 3000*0.1 = 300ms ?
+#define MAX_COUNT_ON_PLUSE 255// 3000*0.1 = 300ms ?
 #ifdef	__cplusplus
 extern "C" {
 #endif
@@ -16,7 +16,7 @@ extern "C" {
 void APP_IR_Start_Read_Data(void);
 #else
 extern unsigned char IR_Has_Signal ;
-extern unsigned short IR_Data[254];
+extern unsigned char IR_Data[64];
 extern unsigned char Number_Pulse ;
 extern void APP_IR_Start_Read_Data(void);
 #endif

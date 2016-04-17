@@ -5,7 +5,7 @@
 #include "../HAL/common.h"
 #include "../HAL/HAL_Buzzer.h"
 #include "../HAL/HAL_Timer.h"
-
+#include "APP_LEDs.h"
 struct_Beeper strt_Beeper_Value;
 struct_time_beeper * p_strt_Time_Beep;
 unsigned char u8_Number_Beep;
@@ -13,44 +13,49 @@ unsigned char u8_Current_Beep;
 unsigned char u8_Beeper_State;
 
 #define NUMBER_BEEP_OK  1
-const struct_time_beeper BEEP_PRESS_OK = {200, 100};
+const struct_time_beeper BEEP_PRESS_OK = {2, 1};
 #define NUMER_BEEP_ON   2
-const struct_time_beeper BEEP_ON_SETTING[NUMER_BEEP_ON] = { {200,50} , {300,100} };
+const struct_time_beeper BEEP_ON_SETTING[NUMER_BEEP_ON] = { {2,1} , {3,1} };
 #define NUMBER_BEEP_SETTING_OK  2
-const struct_time_beeper BEEP_SETTING_OK[NUMBER_BEEP_SETTING_OK] ={ {300,100}, {200,50} };
+const struct_time_beeper BEEP_SETTING_OK[NUMBER_BEEP_SETTING_OK] ={ {3,1}, {2,1} };
 #define NUMBER_BEEP_ERROR   3
-const struct_time_beeper BEEP_SETTING_ERROR[NUMBER_BEEP_ERROR] = {{200,100}, {200, 100}, {400,100}};
+const struct_time_beeper BEEP_SETTING_ERROR[NUMBER_BEEP_ERROR] = {{2,1}, {2, 1}, {4,1}};
 
-void BEEPER_Set_Volume_Frequency(unsigned short frequency, unsigned short Volume)
+void BEEPER_Set_Volume_Frequency(unsigned short frequency, VOLUME_LEVEL Volume)
 {
     strt_Beeper_Value.u16_Beeper_Frequency = frequency;
     switch(Volume)
     {
-        case 0:
+        case VOLUME_LOW:
             strt_Beeper_Value.u8_Beeper_Volume = 15;
             break;            
-        case 1:
+        case VOLUME_MED:
             strt_Beeper_Value.u8_Beeper_Volume = 30;
             break;
-        case 2:
+        case VOLUME_HIGH:
             strt_Beeper_Value.u8_Beeper_Volume = 50;
             break;
+        case VOLUME_MAX:
+            strt_Beeper_Value.u8_Beeper_Volume = 75;
+            break;            
         default:
             strt_Beeper_Value.u8_Beeper_Volume = 50;
             break;
-    }            
-    HAL_Buzzer_PWM_Init(strt_Beeper_Value.u16_Beeper_Frequency, strt_Beeper_Value.u8_Beeper_Volume);
+    }         
+    setPWMFreq(strt_Beeper_Value.u16_Beeper_Frequency, strt_Beeper_Value.u8_Beeper_Volume);
 }
 
 void BEEPER_Timer_Handler(void)
 {    
+         LEDs_Change_State(LED_1, 1);
     if(u8_Beeper_State == BEEPER_STATE_ON)
-    {
+    {   
         if(u8_Current_Beep < u8_Number_Beep)
         {
             //init timer with time off, and BEEPER_Timer_Handler to process
             HAL_Timer_0_Init(p_strt_Time_Beep[u8_Current_Beep].time_off, &BEEPER_Timer_Handler);
             u8_Beeper_State == BEEPER_STATE_OFF;
+            u8_Current_Beep++;
         }
         else
         {
@@ -63,10 +68,10 @@ void BEEPER_Timer_Handler(void)
     {
         if(u8_Current_Beep < u8_Number_Beep)
         {     
-            u8_Current_Beep++;
             //init timer with time on, and BEEPER_Timer_Handler to process
             HAL_Timer_0_Init(p_strt_Time_Beep[u8_Current_Beep].time_on, &BEEPER_Timer_Handler);
             u8_Beeper_State == BEEPER_STATE_ON;
+            //setPWMFreq(strt_Beeper_Value.u16_Beeper_Frequency, strt_Beeper_Value.u8_Beeper_Volume);
             HAL_Buzzer_On(); 
         }
     }
@@ -80,6 +85,7 @@ void BEEPER_Direct_Beep(void)
     u8_Current_Beep = 0;
     //init timer with BEEP_PRESS_OK time on, and BEEPER_Timer_Handler to process
     HAL_Timer_0_Init(p_strt_Time_Beep[u8_Current_Beep].time_on, &BEEPER_Timer_Handler);
+    //setPWMFreq(strt_Beeper_Value.u16_Beeper_Frequency, strt_Beeper_Value.u8_Beeper_Volume);
     HAL_Buzzer_On();
 }
 

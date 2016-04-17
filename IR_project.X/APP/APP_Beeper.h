@@ -12,7 +12,7 @@
 #define FREQUENCY_MED 28400
 #define FREQUENCY_HI  32000
 
-enum
+typedef enum
 {
     VOLUME_LOW = 0,
     VOLUME_MED = 1,
@@ -42,7 +42,7 @@ typedef enum
 #ifdef	__cplusplus
 extern "C" {
 #endif
-void BEEPER_Set_Volume_Frequency(unsigned short frequency, unsigned short Volume);
+void BEEPER_Set_Volume_Frequency(unsigned short frequency, VOLUME_LEVEL Volume);
 void BEEPER_Direct_Beep(void);
 void BEEPER_On_Setting(void);
 void BEEPER_Setting_OK(void);

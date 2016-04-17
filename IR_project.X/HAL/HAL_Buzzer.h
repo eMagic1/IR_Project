@@ -13,6 +13,7 @@ extern "C" {
 #endif
 
 void HAL_Buzzer_GPIO_Init(void);
+void setPWMFreq(unsigned short Fpwm, unsigned char dutyPercent);
 void HAL_Buzzer_PWM_Init(unsigned short frequency_Khz, unsigned char Duty);
 void HAL_Buzzer_On(void);
 void HAL_Buzzer_Off(void);

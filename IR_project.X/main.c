@@ -46,7 +46,7 @@ unsigned char Parse_Data(unsigned char * p_LoadID)
     unsigned char u8_Index_Data;
     
     *p_LoadID = 0;
-    for ( u8_Index_Load = 0; u8_Index_Load< NUMBER_LOAD; u8_Index_Load++)
+    for ( u8_Index_Load = 0; u8_Index_Load < NUMBER_LOAD; u8_Index_Load++)
     {
         Read_IR_Data_Len(u8_Index_Load, &bLen);
         if(bLen >= Number_Pulse)
@@ -75,10 +75,10 @@ unsigned char Parse_Data(unsigned char * p_LoadID)
                 break;
             }
         }
-    }
-    
+    }    
     return u8_Result;
 }
+#if 0
 void main(void)
 {
     static unsigned char Setting_Timer_Is_Running = 0;
@@ -89,12 +89,12 @@ void main(void)
     //HAL init
     HAL_Button_Init(&Button_IRQ_Handler);
     HAL_Buzzer_GPIO_Init();
-    HAL_Buzzer_PWM_Init(FREQUENCY_MED, VOLUME_HIGH);
+    HAL_Init_IR_IO();
     GPIO_Leds_Init();
     GPIO_OPTOs_Init();
     //App Init
     APP_IR_Start_Read_Data();
-    
+    BEEPER_Set_Volume_Frequency(FREQUENCY_MED, VOLUME_HIGH);
     //init state when start up (power up)    
     for(unsigned char i = 0; i < NUMBER_LOAD; i++)
     {
@@ -204,6 +204,30 @@ void main(void)
         CLRWDT();
         /* TODO <INSERT USER APPLICATION CODE HERE> */
     }
-
 }
+#else
+void main()
+{
+    unsigned char state[3] = {0,0,0};
+    
+    HAL_Button_Init(&Button_IRQ_Handler);
+    //HAL_Buzzer_GPIO_Init();
+    //HAL_Init_IR_IO();
+    GPIO_Leds_Init();
+    //GPIO_OPTOs_Init();
+    //GPIO_Leds_Init();
+    LEDs_Change_State(0,0);
+    LEDs_Change_State(1,1);
+    while(1)
+    {
+        if(Button_Release != 0)
+        {
+            LEDs_Change_State(0,1);
+            Button_Release = 0;
+            //LEDs_Change_State(Button_Release - 1, 1-state[Button_Release - 1]);
+            //state[Button_Release - 1] = 1-state[Button_Release - 1];
+        }
+    }
+}
+#endif
 

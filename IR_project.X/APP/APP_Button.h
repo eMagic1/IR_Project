@@ -13,9 +13,9 @@ extern "C" {
 #endif
     
 #ifdef __APP_BUTTON_C__
-void Button_IRQ_Handler(void);
+void Button_IRQ__Handler(void);
 #else
-extern void Button_IRQ_Handler(void);
+extern void Button_IRQ__Handler(void);
 extern unsigned char Button_Press ;
 extern unsigned char Button_Release ;
 extern unsigned char Button_3s ;

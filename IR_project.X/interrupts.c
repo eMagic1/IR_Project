@@ -10,7 +10,7 @@
 
 #include <stdint.h>         /* For uint8_t definition */
 #include <stdbool.h>        /* For true/false definition */
-
+#include "system.h"
 /******************************************************************************/
 /* Interrupt Routines                                                         */
 /******************************************************************************/
@@ -29,9 +29,10 @@ extern unsigned short u16_Max_Count_Timer1_Interrupt;
 extern unsigned short IR_Tick_Count;
 extern unsigned short u16_Condition_Overload;
 
+extern unsigned char Button_Release;
 // Interrupt Handler
-void interrupt ISR(void)
-{
+void interrupt ISR(void) {
+    
     static unsigned short T0_Tick_Count = 0;
     static unsigned short T1_Tick_Count = 0;
     
@@ -44,10 +45,11 @@ void interrupt ISR(void)
     }
     
     //button IRQ
-    if (IOCIF) 
-    {                                                
-        f_Button_Interrupt_Handler();
-        IOCIF = 0;                              //must clear the flag in software        
+    if (IOCAF) 
+    {       
+        Button_Release = 1;
+        //f_Button_Interrupt_Handler();
+        IOCAF = 0; 
         IOCIE = 1; 
     }
     
@@ -75,6 +77,7 @@ void interrupt ISR(void)
         PIE1bits.TMR1IE = 1;
         PIR1bits.TMR1IF = 0;   // clear the flag        
     }
+#if 0
     // Timer4 Interrupt-  Period = 0.000010 seconds
     if (PIR3bits.TMR4IF == 1)          // timer 4 interrupt flag
     {
@@ -86,4 +89,5 @@ void interrupt ISR(void)
         PIR3bits.TMR4IF = 0;  
         PIE3bits.TMR4IE = 0; 
     }
+#endif
 }

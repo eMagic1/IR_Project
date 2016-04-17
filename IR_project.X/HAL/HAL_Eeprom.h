@@ -14,7 +14,8 @@ extern "C" {
 
 void HAL_Eeprom_Write(int i_Address, unsigned char u8_Data);
 void HAL_Eeprom_Read(int i_Address, unsigned char * p_u8_Data);
-
+unsigned char ReadEEByte(unsigned char address);
+unsigned char WriteEEByte(unsigned char address, unsigned char data);
 #ifdef	__cplusplus
 }
 #endif

@@ -13,12 +13,12 @@
 
 f_void_IRS * f_IR_Interrupt_Handler;
 f_void_IRS * f_IR_OverLoad_Handler;
-unsigned short u16_Condition_Overload = 0;
 
 void HAL_Init_IR_IO(void)
 {
-    ANSELA = 0x00; //use for digital input
-    TRISA2 = RA2 = 1; //input and pull up
+    ANSELAbits.ANSA2 = 0; //use for digital input
+    TRISAbits.TRISA2 = 1;
+    RA2 = 1; //input and pull up
 }
 
 void HAL_Set_Trigger_Edg_IR(unsigned char bl_Rasing_Or_Falling, f_void_IRS * f_p_handler)
@@ -29,9 +29,8 @@ void HAL_Set_Trigger_Edg_IR(unsigned char bl_Rasing_Or_Falling, f_void_IRS * f_p
     INTE=1;      //enable INT interrupt   
 }
 
-void HAL_IR_Set_Overload_Handler(unsigned short u16_Condition, f_void_IRS * f_p_handler)
+void HAL_IR_Set_Overload_Handler(f_void_IRS * f_p_handler)
 {
-    u16_Condition_Overload = u16_Condition;
     f_IR_OverLoad_Handler = f_p_handler;
 }
 #endif

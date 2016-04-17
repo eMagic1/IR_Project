@@ -16,7 +16,7 @@ static void Setting_Timer_IRQ()
 
 void Setting_Timer_Start(void)
 {
-    HAL_Timer1_Init(15000, &Setting_Timer_IRQ);
+    HAL_Timer1_Init(15, &Setting_Timer_IRQ);
     Timer_15s_Is_Over = 0;
 }
 

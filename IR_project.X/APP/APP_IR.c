@@ -8,7 +8,7 @@
 
 
 unsigned char IR_Has_Signal = 0;
-unsigned short IR_Data[100];
+unsigned char IR_Data[1];
 unsigned char Number_Pulse = 0;
 
 static void IR_IRQ_Handler(void)
@@ -18,17 +18,18 @@ static void IR_IRQ_Handler(void)
     {
         //falling edge
         //start timer        
-        HAL_Timer4_Reset();
-        HAL_Timer46_Init();  
+        HAL_Timer2_Reset();
+        HAL_Timer2_Init();  
+        
         Number_Pulse++;
         edge = 1;// change to raising edge
         HAL_Set_Trigger_Edg_IR(edge, &IR_IRQ_Handler);
     }
     else
     {
-        HAL_Timer4_Get_TickCount(&IR_Data[Number_Pulse - 1]);
+        HAL_Timer2_Get_TickCount(&IR_Data[Number_Pulse - 1]);
         Number_Pulse++;
-        HAL_Timer4_Reset();
+        HAL_Timer2_Reset();
         edge = 1 - edge; // toggle edge
         HAL_Set_Trigger_Edg_IR(edge, &IR_IRQ_Handler);
     }
@@ -36,14 +37,14 @@ static void IR_IRQ_Handler(void)
 static void APP_IR_End_Read_Data(void)
 {
     IR_Has_Signal = 1;
-    HAL_Timer4_Stop();            
+    HAL_Timer2_Stop();            
     HAL_Set_Trigger_Edg_IR(0, &IR_IRQ_Handler);
 }
 
 void APP_IR_Start_Read_Data(void)
 {
     HAL_Set_Trigger_Edg_IR(0, &IR_IRQ_Handler);
-    HAL_IR_Set_Overload_Handler(MAX_COUNT_ON_PLUSE, &APP_IR_End_Read_Data);
+    HAL_IR_Set_Overload_Handler(&APP_IR_End_Read_Data);
 }
 
 #endif

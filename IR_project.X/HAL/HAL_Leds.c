@@ -27,7 +27,7 @@ void GPIO_Leds_Init(void)
 /******************************************************************************/
 void GPIO_Leds_Set(unsigned char pin_number)
 {
-    LATC |= (1 << pin_number);
+    PORTC |= (1 << pin_number);
 }
 /******************************************************************************/
 /*Function Name:  GPIO_Leds_Init                                              */
@@ -37,6 +37,6 @@ void GPIO_Leds_Set(unsigned char pin_number)
 /******************************************************************************/
 void GPIO_Leds_Clear(unsigned char pin_number)
 {
-    LATC &= ~(1 << pin_number);
+    PORTC &= ~(1 << pin_number);
 }
 #endif

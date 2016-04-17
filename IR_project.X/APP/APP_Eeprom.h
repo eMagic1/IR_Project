@@ -29,10 +29,8 @@ extern "C" {
     
 void Write_State_Of_Load(LOAD_ID eLoadID, unsigned char value);
 void Read_State_Of_Load(LOAD_ID eLoadID, unsigned char * p_value);
-void Write_IR_Data(LOAD_ID eLoadID, unsigned short * p_Data, unsigned char u8_Len);
-void Read_IR_Data(LOAD_ID eLoadID, unsigned short * p_Data, unsigned char * p_Len);
 void Read_IR_Data_Len(LOAD_ID eLoadID, unsigned char * p_Len);
-void Read_IR_Data_At(LOAD_ID eLoadID, unsigned short * p_Data, unsigned char Index);
+void Read_IR_Data_At(LOAD_ID eLoadID, unsigned char * p_Data, unsigned char Index);
 #ifdef	__cplusplus
 }
 #endif

@@ -5,60 +5,51 @@
 #include "../HAL/common.h"
 #include "../HAL/HAL_Buttons.h"
 #include "../HAL/HAL_Timer.h"
-
-unsigned char Button_Press = 0;
-unsigned char Button_Release = 0;
-unsigned char Button_3s = 0;
+#include "../APP/APP_LEDs.h"
+volatile unsigned char Button_Press = 0;
+volatile unsigned char Button_Release = 0;
+volatile unsigned char Button_3s = 0;
 
 static void Button_3s_Handler(void)
 {
-    unsigned char Button_Value[3];
-    for(unsigned char i = BUTTON_1; i<= BUTTON_3; i++)
-    {
-        HAL_Button_Get_State(i, &Button_Value[i]);
-        if((Button_Press > 0)&&(Button_Value[i] == 0)&&(i+1 == Button_Press))//still press
-        {
-            Button_Press = 0;
-            Button_Release = 0;
-            Button_3s = (unsigned char)i+1; //save state 3s
-            //end timer here
-            HAL_Timer1_Stop();
-            break;
-        }
-    }
+    unsigned char Button_Value;  
+        
+    Button_3s = Button_Press;
+    Button_Press = BUTTON_NONE;
+    Button_Release = BUTTON_NONE;
+    HAL_Button_Init(&Button_IRQ__Handler);
+    HAL_Timer1_Stop();  
 }
 
-void Button_IRQ_Handler(void)
+void Button_IRQ__Handler2(void)
 {
-    unsigned char Button_Value[3];
-    
-    HAL_Debonce();
-    for(unsigned char i = BUTTON_1; i<= BUTTON_3; i++)
+    unsigned char Button_Value;  
+        
+    HAL_Button_Get_Flag(&Button_Value);
+    if((Button_Press == Button_Value)&&(Button_3s == BUTTON_NONE))
     {
-        HAL_Button_Get_State(i, &Button_Value[i]);
-        if(Button_Press == 0)
-        {
-            if((Button_Value[i] == 0)&&(Button_3s != i+1))//pressed
-            {
-                Button_Press = i+1;
-                //start timer here
-                HAL_Timer1_Init(3000, &Button_3s_Handler);
-                break;
-            }
-        }
-        else
-        {
-            if((Button_Value[i] == 1)&&(i+1 == Button_Press)&&(Button_3s != i+1))//release
-            {
-                Button_Press = 0; 
-                Button_Release = i+1;
-                //end timer here
-                HAL_Timer1_Stop();
-                break;
-            }
-        }
+        Button_Release = Button_Press;
+        Button_Press = BUTTON_NONE;
+        Button_3s = BUTTON_NONE;
+        HAL_Button_Init(&Button_IRQ__Handler);
+        HAL_Timer1_Stop();
     }
 }
 
+void Button_IRQ__Handler(void)
+{
+ 
+    unsigned char Button_Value;  
+    HAL_Debonce();
+    HAL_Button_Get_Flag(&Button_Value);
+    if(Button_3s == BUTTON_NONE)
+    {
+        Button_Press = Button_Value;
+        Button_Release = BUTTON_NONE;
+        Button_3s = BUTTON_NONE;
+        HAL_Button_Change_Edge(&Button_IRQ__Handler2);
+        HAL_Timer1_Init(3, &Button_3s_Handler);    
+    }
+}
 
 #endif
